@@ -2,9 +2,9 @@
 date_default_timezone_set('America/Mexico_City');
 
 $server = "localhost"; 
-$usuario = "u235387680_054";
-$password = "U1?@FGJqOHx";
-$database = "u235387680_054";
+$usuario = "root";
+$password = "";
+$database = "thetest";
 
 try {
     $mysqli = new mysqli($server, $usuario, $password, $database);

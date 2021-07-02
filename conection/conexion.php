@@ -1,9 +1,9 @@
 <?php
 date_default_timezone_set('America/Mexico_City');
 
-$conect = 'mysql:host=localhost;dbname=u235387680_054;charset=utf8';
-$username = 'u235387680_054';
-$dbpass = 'U1?@FGJqOHx';
+$conect = 'mysql:host=localhost;dbname=thetest;charset=utf8';
+$username = 'root';
+$dbpass = '';
 
 try {
     $con = new PDO($conect, $username , $dbpass);

@@ -4,9 +4,9 @@ date_default_timezone_set('America/Mexico_City');
 
 
 class DBConexion{
-  var $conect = 'mysql:host=localhost;dbname=u235387680_054;charset=utf8';
-  var $username = 'u235387680_054';
-  var $dbpass = 'U1?@FGJqOHx';
+  var $conect = 'mysql:host=localhost;dbname=thetest;charset=utf8';
+  var $username = 'root';
+  var $dbpass = '';
 
   function Conexion(){
     try {
