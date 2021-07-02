@@ -1,0 +1,45 @@
+*{
+    font-size: 0.9rem;
+}
+
+a:link, a:visited, a:hover {
+    text-decoration: none !important;
+}
+
+body{
+    overflow: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+}
+
+#sidebar-container{
+    min-height: 100vh;
+}
+
+#sidebar-container .logo{
+    padding: .875rem 1.25rem;
+}
+
+#sidebar-container .menu{
+    width: 13rem;
+}
+
+#container{
+    padding-right: 30px !important;
+    margin-top: 30px !important;
+}
+
+.btn-search{
+    right: 5px;
+}
+
+.avatar{
+    max-width: 35px;
+    max-height: 35px;
+}
+
+
+#content{
+    height: 100vr;
+    padding-bottom: 5rem;
+}

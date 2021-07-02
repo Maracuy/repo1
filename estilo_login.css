@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*Codigo del menú*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 1px 0px 5px gray;
+}
+li {
+  float: right;
+}
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}  
+li a:hover {
+  color: #CC296E;
+}
+
+/*Codigo de la division*/
+.division{
+  height: 20px;
+}
+
+
+/*Codigo del Login*/
+.contenedor{
+  width:100%;
+  padding:15px 5px;
+  word-wrap: break-word;
+}
+
+.formulario{
+  background: rgb(241, 240, 240);
+  margin-top: 20px;
+  padding: 20px 20px;
+}
+
+h1{
+  text-align: center;
+  color: #1a2537;
+  font-size: 40px;
+}
+
+input[type="text"],input[type="password"]{
+  font-size: 20px;
+  width: 82%;
+  padding: 10px;
+  border: none;
+}
+
+.input-contenedor{
+  margin-bottom: 15px;
+  border: none;
+}
+
+.icon{
+  min-width: 50px;
+  text-align: center;
+  color: #999;
+}
+
+.button{
+  border: none;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  background-color: #1a2537;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover{
+  background: cadetblue;
+}
+
+p{
+  text-align: center;
+}
+
+.link{
+  text-decoration: none;
+  color: #1a2537;
+  font-weight: 600;
+}
+
+.link:hover{
+  color: cadetblue;
+}
+
+@media(min-width:768px){
+  .formulario{
+    margin:auto;
+    width: 500px;
+    margin-top: 150;
+    border-radius: 2%;
+  }
+}
