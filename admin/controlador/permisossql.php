@@ -2,6 +2,20 @@
 
 require_once '../../conection/conexion.php';
 
+var_dump($_POST);
+
+
+function nuevo($con, $user, $passsegura){
+    $sql_editar = "INSERT INTO ciudadanos (usuario_sistema, contrasenia, nivel) VALUES ('$user', '$passsegura', 0)";
+    $sentencia_agregar = $con->prepare($sql_editar);
+    try{
+        $sentencia_agregar->execute();
+        echo "Si se registro";
+    }catch(Exception $e){
+        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        die();
+    }  
+}
 
 
 function crear($con, $id, $user, $passsegura, $nivel){
@@ -69,6 +83,15 @@ if(array_key_exists("nivel",$_POST)){
     }
     nivel($con, $id, $nivel);
     header("Location: ../permisos.php?id=$id");
+}
+
+if(array_key_exists("cero",$_POST)){
+    $user = $_POST['usuario_sistema'];
+    $pass = $_POST['contrasenia'];
+    $passsegura = password_hash($pass, PASSWORD_DEFAULT);
+    $nivel = 0;
+    nuevo($con, $user, $passsegura);
+    header("Location: ../../");
 }
 
 ?>
