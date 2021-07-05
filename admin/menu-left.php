@@ -9,6 +9,10 @@
             <a href="../admin/reportes.php" class="d-block text-light p-3"> <i class="fas fa-align-justify mr-2"></i> Reporte </a>
         <?php endif?>
 
+        <?php if($_SESSION['user']['nivel'] < 8 ): // Solo los trabajadores pueden ver esto?> 
+            <a href="../admin/registro_programas.php" class="d-block text-light p-3"> <i class="fas fa-align-justify mr-2"></i> Programas </a>
+        <?php endif?>
+
         <?php if($_SESSION['user']['nivel'] < 4 ): // Solo los ENCARGADOS para arriba pueden ver esto?> 
             <a href="../admin/elecciones.php" class="d-block text-light p-3"> <i class="fas fa-vote-yea mr-2"></i> Electoral </a>
         <?php endif?>
