@@ -1,11 +1,10 @@
 <?php
 
-$admins = "c.borrado";
 $de_ciudadanos = "c.id_ciudadano, c.nombres, c.apellido_p, c.apellido_m, c.telefono, c.seccion_electoral, c.manzana, c.vulnerable, c.genero, c.fecha_nacimiento, c.simpatia";
 
 
 if ($nivel_admin <= 4) {
-    $sentencia2 = "SELECT $de_ciudadanos , $admins,
+    $sentencia2 = "SELECT $de_ciudadanos ,
     d.casilla, d.puesto, d.zona, d.seccion, d.rg, z.capacitacion1 AS cap1, z.capacitacion2 AS cap2
     FROM ciudadanos c
     LEFT JOIN puestos_defensa d ON c.id_ciudadano = d.id_ciudadano
@@ -95,7 +94,7 @@ function Estadistica($con){
     $stm = $con->query("SELECT COUNT(id_defensa) FROM puestos_defensa WHERE id_ciudadano != ''");
     $usados = $stm->fetch();
 
-    $stm = $con->query("SELECT COUNT(id_ciudadano) FROM ciudadanos WHERE id_ciudadano >3 AND borrado !=1");
+    $stm = $con->query("SELECT COUNT(id_ciudadano) FROM ciudadanos WHERE id_ciudadano >3");
     $total_ciudadanos = $stm->fetch();
 
 
