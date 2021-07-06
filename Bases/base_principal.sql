@@ -324,3 +324,14 @@ CREATE TABLE IF NOT EXISTS ciudadanos_borrados(
     observaciones TEXT NULL DEFAULT NULL,
     borrado INT DEFAULT 0
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+DROP TABLE IF EXISTS programas;
+CREATE TABLE IF NOT EXISTS programas(
+    id_programa INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_programa VARCHAR(255) NOT NULL,
+    abreviatura_programa VARCHAR(10) NOT NULL,
+    pasos
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
