@@ -42,7 +42,7 @@ header("Location: admin/index.php");
                 <input type="password" name="password" placeholder="Contraseña">
             </div>
             <input type="submit" value="Entrar" class="button">
-            <p>Al entrar, aceptas los Terminos y Condiciones</p>
+            <p>Al entrar, aceptas los <a href=""> Terminos y Condiciones</a></p>
         </div>
     </form>
 
