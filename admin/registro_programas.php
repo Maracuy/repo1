@@ -40,11 +40,30 @@ td a {
     
 
     <?php
-    
-        include_once('panelPrograma.php')
-
+        include_once('panelPrograma.php');
     ?>
 
+    
+
+    <script>
+    function verificarCurp(){
+        let expresion = "^([a-zA-Z]{4})+([0-9]{6})+([a-zA-Z]{6})+([0-9a-zA-Z]{2}|[a-zA-Z]{2}|[0-9]{2})+$";
+        let contenidoCajaTxt = document.getElementById('inputSmForm'),
+            mensajeVerificacion = document.getElementById('mensajeVerificacion');
+        let curp = inputSmForm.value;
+
+        if(curp.length <= 17 || curp.length >= 19){
+            mensajeVerificacion.innerHTML = "Revise la longitud";
+        }else{
+            if(curp.match(expresion)){
+                return true;
+            }else{
+                mensajeVerificacion.innerHTML = "Curp inválida";
+            }
+        }
+        return false;
+    }
+    </script>
 
 
     <?php include 'estructura_fin.php'?>  <!--No menear -->
