@@ -22,6 +22,7 @@ if($_SESSION['user']['nivel'] == 9){
     <!-- Bootstrap CSS -->
     <script src="https://kit.fontawesome.com/d0baa1aa63.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stylePanelPrograma.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <style>
 /*tr:hover { background: gray; }*/
@@ -37,12 +38,14 @@ td a {
     <?php include 'estructura_inicio.php' ?>   <!--No menear -->
 
     
+    <div class="lname-containerGrl">
+    
     
 
     <?php
         include_once('panelPrograma.php');
     ?>
-
+    </div>
     
 
     <script>
@@ -50,6 +53,7 @@ td a {
         let expresion = "^([a-zA-Z]{4})+([0-9]{6})+([a-zA-Z]{6})+([0-9a-zA-Z]{2}|[a-zA-Z]{2}|[0-9]{2})+$";
         let contenidoCajaTxt = document.getElementById('inputSmForm'),
             mensajeVerificacion = document.getElementById('mensajeVerificacion');
+
         let curp = inputSmForm.value;
 
         if(curp.length <= 17 || curp.length >= 19){
