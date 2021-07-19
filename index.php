@@ -5,7 +5,6 @@ if (isset($_SESSION['user'])){
 header("Location: admin/index.php");
 }
 ?>
-<--! hola -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
