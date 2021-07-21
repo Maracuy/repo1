@@ -336,6 +336,7 @@ CREATE TABLE IF NOT EXISTS programas(
     pasos
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
 CREATE DATABASE IF NOT EXISTS thetest;
 USE thetest;
 
