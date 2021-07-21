@@ -1,4 +1,3 @@
-
 <?php
 
 // Clase (Objeto) para agrupar y extraer datos de los programas
@@ -35,13 +34,15 @@ class ObjectTable{
 // mostrar datos de la persona y registrarlo (Tercer paso)
 if (isset($_GET["curp"])) {
 
-    echo "esta guardada la curp por url<br>";
+   // echo "esta guardada la curp por url<br>";
 
     // Revisar si la persona se encuentra ya registrada en el programa
+    $programaParaRegistrar = htmlentities(addslashes($_GET["registro"]));
+    $curpParaRegistrar = htmlentities(addslashes($_GET["curp"]));
 
+    include_once("busquedaPersonas.php");
 
-
-
+    
 
 
 
@@ -93,14 +94,14 @@ if (isset($_GET["curp"])) {
 
                 
 
-                echo "<p>Datos</p>";
+                echo "<p>Antes de continuar, revise los datos</p>";
                 echo "<p>Programa a registrar (ID): " . $_GET["registro"] . "</p>";
                 echo "<p>CURP: " . $curpUsuario . "</p>";
 
                 echo "</div><div class=\"lname-containerDatosConfirmacionBox\">";
 
                 echo "<br><a href=\"{$urlCorta}\" class=\"btn btn-danger\">No, Regresar</a>";
-                echo "<br><a href=\"{$urlCompleta}\" class=\"btn btn-success\">Si, confirmar</a>";
+                echo "<br><a href=\"{$urlCompleta}\" class=\"btn btn-success\">Si, Continuar</a>";
 
                 echo "</div></div>";
 
