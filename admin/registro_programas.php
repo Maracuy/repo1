@@ -31,22 +31,22 @@ td a {
     text-decoration: none !important;
 }
 </style>
-    
+     
 </head>
 <body>
 
     <?php include 'estructura_inicio.php' ?>   <!--No menear -->
 
-     <!--
-    <div class="lname-containerGrl">-->
+     
+    <div class="lname-containerGrl">
     
     
 
     <?php
         include_once('panelPrograma.php');
     ?>
-    <!--
-    </div>-->
+   
+    </div>
     
 
     <script>
