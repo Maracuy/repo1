@@ -38,15 +38,17 @@ td a {
     <?php include 'estructura_inicio.php' ?>   <!--No menear -->
 
      
-    <div class="lname-containerGrl">
+    <!--<div class="lname-containerGrl">-->
     
     
 
     <?php
-        include_once('panelPrograma.php');
+        //include_once('panelPrograma.php');
+
+        include_once('programas/objetos.php');
     ?>
    
-    </div>
+    <!--</div>-->
     
 
     <script>
