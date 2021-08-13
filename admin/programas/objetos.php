@@ -2,194 +2,8 @@
 
 include_once('pruebas.php');
 
-class CiudadanosLista{
-    private $idCiudadano;
-    private $indiceProcesoRealizado;
-    private $indiceFechas;
-    private $indiceAnotaciones;
-    private $stringProcesosRealizados;
-    private $stringFechas;
-    private $stringAnotaciones;
-
-    public function __construct($idCiudadano, $indiceProcesoRealizado, $indiceFechas, $indiceAnotaciones){
-        $this->idCiudadano = $idCiudadano;
-        $this->indiceProcesoRealizado = $indiceProcesoRealizado;
-        $this->indiceFechas = $indiceFechas;
-        $this->indiceAnotaciones = $indiceAnotaciones;
-        $this->stringProcesosRealizados = "";
-        $this->stringFechas = "";
-        $this->stringAnotaciones = "";
-    }
-    
-    // Getters de los indices
-    public function getIdCiudadano(){
-        return $this->idCiudadano;
-    }
-
-    public function getIndiceProcesoRealizado(){
-        return $this->indiceProcesoRealizado;
-    }
-
-    public function getIndiceFechas(){
-        return $this->indiceFechas;
-    }
-
-    public function getIndiceAnotaciones(){
-        return $this->indiceAnotaciones;
-    }
-
-    // Getters de busqueda con el indice
-    public function getProcesoPorIndiceRealizado($indiceProceso){
-        $arreglo = $this->getIndiceProcesoRealizado();
-        $existenciaDelIndice = self::getComprobarIndiceDeArreglo($arreglo, $indiceProceso);
-        if($existenciaDelIndice){
-            return $arreglo[$indiceProceso];
-        }else{
-            return false;
-        }
-    }
-
-    public function getFechaPorIndice($indiceFecha){
-        $arreglo = $this->getIndiceFechas();
-        $existenciaDelIndice = self::getComprobarIndiceDeArreglo($arreglo, $indiceFecha);
-        if($existenciaDelIndice){
-            return $arreglo[$indiceFecha];
-        }else{
-            return false;
-        }
-    }
-
-    public function getAnotacionesPorIndice($indiceAnotacion){
-        $arreglo = $this->getIndiceAnotaciones();
-        $existenciaDelIndice = self::getComprobarIndiceDeArreglo($arreglo, $indiceAnotacion);
-        if($existenciaDelIndice){
-            return $arreglo[$indiceAnotacion];
-        }else{
-            return false;
-        }
-    }
-
-    // Funciones de validacion
-    private static function getComprobarIndiceDeArreglo($arreglo, $indice){
-        $existenciaDelIndice = isset($arreglo[$indice]) ? true : false;
-        return $existenciaDelIndice;
-    }
-
-    // Setters Internos
-    private function setAgregarProcesoRealizado($indiceProceso, $contenidoProceso){
-        $valor = $this->getProcesoPorIndiceRealizado($indiceProceso);
-        if(!$valor || $valor != true || $valor == ""){
-            $this->indiceProcesoRealizado[$indiceProceso] = $contenidoProceso;
-        }else{
-            return false;
-        }
-    }
-
-    private function setEliminarProcesoRealizado($indiceProceso){
-        $valor = $this->getProcesoPorIndiceRealizado($indiceProceso);
-        if($valor || !$valor != true || !$valor == ""){
-            unset($this->indiceProcesoRealizado[$indiceProceso]);
-        }else{
-            return false;
-        }
-    }
-
-    private function setAgregarFecha($indiceFecha, $contenidoFecha){
-        $valor = $this->getFechaPorIndice($indiceFecha);
-        if(!$valor || $valor != true || $valor == ""){
-            $this->indiceFechas[$indiceFecha] = $contenidoFecha;
-        }else{
-            return false;
-        }
-    }
-
-    private function setEliminarFecha($indiceFecha){
-        $valor = $this->getFechaPorIndice($indiceFecha);
-        if($valor || !$valor != true || !$valor == ""){
-            unset($this->indiceFechas[$indiceFecha]);
-        }else{
-            return false;
-        }
-    }
-
-    private function setAgregarAnotacion($indiceAnotacion, $contenidoAnotacion){
-        $valor = $this->getAnotacionesPorIndice($indiceAnotacion);
-        if(!$valor || $valor != true || $valor == ""){
-            $this->indiceAnotaciones[$indiceAnotacion] = $contenidoAnotacion;
-        }else{
-            return false;
-        }
-    }
-
-    private function setEliminarAnotacion($indiceAnotacion){
-        $valor = $this->getAnotacionesPorIndice($indiceAnotacion);
-        if($valor || !$valor != true || !$valor == ""){
-            unset($this->indiceAnotaciones[$indiceAnotacion]);
-        }else{
-            return false;
-        }
-    }
-
-    private function agregarRegistro(){
-        $this->guardarIndicesAString($this->getIndiceProcesoRealizado(), $this->getIndiceFechas(), $this->getIndiceAnotaciones());
-        ActualizarRegistros::actualizarDatosEnBDO($this->idCiudadano, $this->stringProcesosRealizados, $this->stringFechas, $this->stringAnotaciones);
-    }
-
-    private function guardarIndicesAString($indiceProceso, $indiceFechas, $indiceAnotaciones){
-        $indiceProcesoCadena = self::unirIndiceYValorDeArregloAsociativo($indiceProceso);
-        $indiceFechas = self::unirIndiceYValorDeArregloAsociativo($indiceFechas);
-        $indiceAnotaciones = self::unirIndiceYValorDeArregloAsociativo($indiceAnotaciones);
-        $this->stringProcesosRealizados = $indiceProcesoCadena;
-        $this->stringFechas = $indiceFechas;
-        $this->stringAnotaciones = $indiceAnotaciones;
-    }
-
-    private static function unirIndiceYValorDeArregloAsociativo($arreglo){
-        $longitud = (count($arreglo) * 2);
-        $clavesIndice = self::getClavesArregloAsociativo($arreglo);
-        $valoresIndice = self::getValoresArregloAsociativo($arreglo);
-
-        $turnoDeClave = true;
-        $j = 0;
-        $k = 0;
-        for($i = 0; $i < $longitud; $i++){
-            $arrayResultado[] = $turnoDeClave ? $clavesIndice[$j++] : $valoresIndice[$k++];
-            $turnoDeClave ^= true;
-        }
-        $arrayResultado = implode('|', $arrayResultado);
-        return $arrayResultado;
-    }
-
-    private static function getClavesArregloAsociativo($arreglo){
-        $arregloIndices = [];
-        foreach($arreglo as $indice => $value){
-            $arregloIndices[] = $indice;
-        }
-        return $arregloIndices;
-    }
-
-    private static function getValoresArregloAsociativo($arreglo){
-        return array_values($arreglo);
-    }
-
-    // Funciones de manipulacion de objeto
-    public function setAgregarElementoAListaCiudadano($indiceGeneral, $contenidoProceso, $contenidoFecha, $contenidoAnotacion){
-        $this->setAgregarProcesoRealizado($indiceGeneral, $contenidoProceso);
-        $this->setAgregarFecha($indiceGeneral, $contenidoFecha);
-        $this->setAgregarAnotacion($indiceGeneral, $contenidoAnotacion);
-        $this->agregarRegistro();
-    }
-
-    public function setEliminarElementoAListaCiudadano($indiceGeneral){
-        $this->setEliminarProcesoRealizado($indiceGeneral);
-        $this->setEliminarFecha($indiceGeneral);
-        $this->setEliminarAnotacion($indiceGeneral);
-        $this->agregarRegistro();
-    }
-}
-
-class ActualizarRegistros{
-    private static function getConexion(){
+class ConexionBase{
+    public static function getConexion(){
         try{
             $conexion = new PDO('mysql:host=127.0.0.1:3309;dbname=thetest', 'root', 'password');
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -200,53 +14,338 @@ class ActualizarRegistros{
         }
         return $conexion;
     }
+}
 
-    // modificar textos de error
-    public static function actualizarDatosEnBDO($idCiudadano, $indiceProcesoRealizado, $indiceFechas, $indiceAnotaciones){
+class CiudadanosLista{
+    protected $idCiudadano;
+    protected $idProceso;
+    private $indiceProcesosRealizados = array();
+    private $indiceFechasRealizadas = array();
+    private $indiceAnotacionesRealizadas = array();
+    private $stringProcesos = "";
+    private $stringFechas = "";
+    private $stringAnotaciones = "";
+    private $stringProcesosDBO = "";
+    private $stringFechasDBO = "";
+    private $arrayProcesosDBO = array();
+    private $arrayFechasDBO = array();
+
+    public function __construct($idCiudadano, $idProceso){
+        $this->idCiudadano = $idCiudadano;
+        $this->idProceso = $idProceso;
+
+        // Llamada a la base para iniciar datos
+        $this->getDatosDBO($idCiudadano, $idProceso);
+
+        // Llamar a la funcion que extrae procesos
+        $this->getProcesosPrograma();
+
+        // llamar a la funcion que guarda los datos en el objeto
+        $this->setProcesosProgramasArray();
+
+        // llamar a la funcion que revisa los procesos ya realizados
+        $this->getRevisarProcesosCompletados();
+
+    }
+
+    // Obtener el id del objeto (Ciudadano)
+    public function getIdCiudadano(){
+        return $this->idCiudadano;
+    }
+
+    // [Validar indice de un arreglo asociativo] (Recibe indice, arreglo) {retorna verdadero o falso segun corresponda}
+    public function existenciaIndiceEnArray($indice, $arreglo){
+        return array_key_exists($indice, $arreglo) ? true : false;
+    }
+
+    // [Validar si una variable se encuentra vacia] (Recibe valor) {retorna verdadero o falso segun corresponda}
+    public static function isEmpty($valor){
+        return empty($valor) ? true : false;
+    }
+
+    // [Extraer claves de un arreglo asociativo] (Recibe arreglo) {retorna un arreglo con todas las claves}
+    public static function getClavesDeArregloAsociativo($arreglo){
+        $arregloResultando = array();
+        foreach ($arreglo as $item => $value){
+            $arregloResultando[] = $item;
+        }
+        return $arregloResultando;
+    }
+
+    // [Extraer valores de un arreglo asociativo] (Recibe arreglo) {retorna un arreglo con todos los valores}
+    public static function getValoresDeArregloAsociativo($arreglo){
+        $arregloResultando = array();
+        foreach ($arreglo as $item => $value){
+            $arregloResultando[] = $value;
+        }
+        return $arregloResultando;
+    }
+    
+    // [Interpretacion, convertir de arreglo asociativo a string] (Recibe arreglo) {retorna una cadena convertida de un arreglo}
+    public function arregloACadena($arreglo){
+        if(!self::isEmpty($arreglo)){
+            $longitud = (count($arreglo) * 2);
+            $clavesIndice = self::getClavesDeArregloAsociativo($arreglo);
+            $valoresIndice = self::getValoresDeArregloAsociativo($arreglo);
+            $turnoDeClave = true;
+            $j = 0;
+            $k = 0;
+            for($i = 0; $i < $longitud; $i++){
+                $arrayResultado[] = $turnoDeClave ? $clavesIndice[$j++] : $valoresIndice[$k++];
+                $turnoDeClave ^= true;
+            }
+            $arrayResultado = implode('|', $arrayResultado);
+            return $arrayResultado;
+        }else{
+            return "";
+        }
+    }
+
+    // [Interpretacion, convertir de string a arreglo asociativo] (Recibe cadena) {retorna un arreglo asociativo convertido de un string}
+    public function cadenaAArreglo($cadena){
+        if(!self::isEmpty($cadena)){
+            $arreglo = explode("|", $cadena);
+            $arregloAsociativo = array();
+            $arregloLongitud = count($arreglo);
+            for($i = 0; $i < $arregloLongitud; $i++){
+                $arregloAsociativo += [$arreglo[$i] => $arreglo[++$i]];
+            }
+            return $arregloAsociativo;
+        }else{
+            return array();
+        }
+    }
+
+    // [Agregar Registro] (recibe indice, nombreProceso, fechaCompletado, anotacion) {Agrega un elemento al arreglo de datos con un indice}
+    public function setAddElemento($indice, $proceso, $fecha, $anotacion){
+        $contadorPermisos = 0;
+        if(!$this->existenciaIndiceEnArray($indice, $this->indiceProcesosRealizados)){
+            $this->indiceProcesosRealizados[$indice] = $proceso;
+            $contadorPermisos++;
+        }
+        if(!$this->existenciaIndiceEnArray($indice, $this->indiceFechasRealizadas)){
+            $this->indiceFechasRealizadas[$indice] = $fecha;
+            $contadorPermisos++;
+        }
+        if(!$this->existenciaIndiceEnArray($indice, $this->indiceAnotacionesRealizadas)){
+            $this->indiceAnotacionesRealizadas[$indice] = $anotacion;
+            $contadorPermisos++;
+        }
+        if(!$contadorPermisos != 3){
+            $this->setUpdateBDO();
+        }
+    }
+
+    // [Eliminar Registro] (recibe indice) {Elimina un elemento al arreglo de datos con un indice}
+    public function setDeleteElemento($indice){
+        $contadorPermisos = 0;
+        if($this->existenciaIndiceEnArray($indice, $this->indiceProcesosRealizados)){
+            unset($this->indiceProcesosRealizados[$indice]);
+            $contadorPermisos++;
+        }
+        if($this->existenciaIndiceEnArray($indice, $this->indiceFechasRealizadas)){
+            unset($this->indiceFechasRealizadas[$indice]);
+            $contadorPermisos++;
+        }
+        if($this->existenciaIndiceEnArray($indice, $this->indiceAnotacionesRealizadas)){
+            unset($this->indiceAnotacionesRealizadas[$indice]);
+            $contadorPermisos++;
+        }
+        if(!$contadorPermisos != 3){
+            $this->setUpdateBDO();
+        }
+    }
+
+    // [Editar Registro] (recibe indice, nombreProceso, fechaCompletado, anotacion) {edita un elemento al arreglo de datos con un indice}
+    public function setEditarElemento($indice, $proceso, $fecha, $anotacion){
+        $contadorPermisos = 0;
+        if($this->existenciaIndiceEnArray($indice, $this->indiceProcesosRealizados)){
+            $this->indiceProcesosRealizados[$indice] = $proceso;
+            $contadorPermisos++;
+        }
+        if($this->existenciaIndiceEnArray($indice, $this->indiceFechasRealizadas)){
+            $this->indiceFechasRealizadas[$indice] = $fecha;
+            $contadorPermisos++;
+        }
+        if($this->existenciaIndiceEnArray($indice, $this->indiceAnotacionesRealizadas)){
+            $this->indiceAnotacionesRealizadas[$indice] = $anotacion;
+            $contadorPermisos++;
+        }
+        if(!$contadorPermisos != 3){
+            $this->setUpdateBDO();
+        }
+    }
+
+    // [Busqueda por indice - proceso] (recibe indice) {retorna una cadena (proceso) con el valor del contenido segun el indice}
+    protected function getBusquedaProceso($indice){
+        $existencia = $this->existenciaIndiceEnArray($indice, $this->indiceProcesosRealizados);
+        return $existencia ? $this->indiceProcesosRealizados[$indice] : false;
+    }
+
+    // [Busqueda por indice - fecha] (recibe indice) {retorna una cadena (fecha) con el valor del contenido segun el indice}
+    protected function getBusquedaFecha($indice){
+        $existencia = $this->existenciaIndiceEnArray($indice, $this->indiceFechasRealizadas);
+        return $existencia ? $this->indiceFechasRealizadas[$indice] : false;
+    }
+
+    // [Busqueda por indice - Anotaciones] (recibe indice) {retorna una cadena (Anotaciones) con el valor del contenido segun el indice}
+    protected function getBusquedaAnotaciones($indice){
+        $existencia = $this->existenciaIndiceEnArray($indice, $this->indiceAnotacionesRealizadas);
+        return $existencia ? $this->indiceAnotacionesRealizadas[$indice] : false;
+    }
+
+    // [Busqueda por indice - procesos lista] (recibe indice) {retorna una cadena (proceso) con el valor del contenido segun el indice}
+    protected function getBusquedaProcesosLista($indice){
+        $existencia = $this->existenciaIndiceEnArray($indice, $this->arrayProcesosDBO);
+        return $existencia ? $this->arrayProcesosDBO[$indice] : false;
+    }
+
+    // [Busqueda por indice - fechas lista] (recibe indice) {retorna una cadena (fechas) con el valor del contenido segun el indice}
+    protected function getBusquedaFechasLista($indice){
+        $existencia = $this->existenciaIndiceEnArray($indice, $this->arrayFechasDBO);
+        return $existencia ? $this->arrayFechasDBO[$indice] : false;
+    }
+
+    // [Guardar arreglo en objeto como texto] (no recibe nada, es una funcion) {Guarda un arreglo en variables de texto para base de datos}
+    private function setVariablesString(){
+        $this->stringProcesos = $this->arregloACadena($this->indiceProcesosRealizados);
+        $this->stringFechas = $this->arregloACadena($this->indiceFechasRealizadas);
+        $this->stringAnotaciones = $this->arregloACadena($this->indiceAnotacionesRealizadas);
+    }
+
+    // [Extraer datos de la base e inciar variables] (recibe idCiudadano, idProceso) {consulta la base con los datos requeridos e inicializa variables}
+    private function getDatosDBO($idCiudadano, $idProceso){
         setlocale(LC_ALL, "es_ES");
         $fecha = date("d") . "/" . date("m") . "/" . date("Y");
-
         $consulta = "SELECT ID_CIUDADANO FROM lista_ciudadanos_proceso_programa WHERE ID_CIUDADANO = :idCiudadano;";
-        $resultado = self::getConexion()->prepare($consulta);
+        $resultado = ConexionBase::getConexion()->prepare($consulta);
         $resultado->bindValue(":idCiudadano", $idCiudadano);
         $resultado->execute();
         $registro = $resultado->rowCount();
-
         if ($registro != 0) {
-
-            $consulta = "UPDATE LISTA_CIUDADANOS_PROCESO_PROGRAMA SET INDICE_PROCESO = :indiceProceso, INDICE_FECHAS = :indiceFechas, INDICE_ANOTACIONES = :indiceAnotaciones, ULTIMA_ACTUALIZACION = :fecha WHERE ID_CIUDADANO = :idCiudadano;";
-
-            $resultado = self::getConexion()->prepare($consulta);
+            $consulta = "SELECT INDICE_PROCESO, INDICE_FECHAS, INDICE_ANOTACIONES FROM lista_ciudadanos_proceso_programa WHERE ID_CIUDADANO = :idCiudadano AND ID_PROCESO = :idProceso;";
+            $resultado = ConexionBase::getConexion()->prepare($consulta);
             $resultado->bindValue(":idCiudadano", $idCiudadano);
-            $resultado->bindValue(":indiceProceso", $indiceProcesoRealizado);
-            $resultado->bindValue(":indiceFechas", $indiceFechas);
-            $resultado->bindValue(":indiceAnotaciones", $indiceAnotaciones);
-            $resultado->bindValue(":fecha", $fecha);
+            $resultado->bindValue(":idProceso", $idProceso);
             $resultado->execute();
+            $resultado = $resultado->fetch(PDO::FETCH_ASSOC);
 
             if(!$resultado){
-                echo "<br>error al actualizar";
+                echo "<br>error al consultar<br>";
             }else{
-                // ELIMINAR ESTE ELSE, SOLO ES INFORMATIVO TEMPORAL
-                echo "<br>se actualizo correctamente";
+                $this->indiceProcesosRealizados = $this->cadenaAArreglo($resultado['INDICE_PROCESO']);
+                $this->indiceFechasRealizadas = $this->cadenaAArreglo($resultado['INDICE_FECHAS']);
+                $this->indiceAnotacionesRealizadas = $this->cadenaAArreglo($resultado['INDICE_ANOTACIONES']);
             }
-        } else {
-
-            $consulta = "INSERT INTO LISTA_CIUDADANOS_PROCESO_PROGRAMA(ID_CIUDADANO, INDICE_PROCESO, INDICE_FECHAS, INDICE_ANOTACIONES, ULTIMA_ACTUALIZACION) VALUES (:idCiudadano, :indiceProceso, :indiceFecha, :indiceAnotacion, :fecha);";
-
-            $resultado = self::getConexion()->prepare($consulta);
+        }else{
+            $consulta = "INSERT INTO LISTA_CIUDADANOS_PROCESO_PROGRAMA(ID_CIUDADANO, ID_PROCESO, INDICE_PROCESO, INDICE_FECHAS, INDICE_ANOTACIONES, ULTIMA_ACTUALIZACION) VALUES (:idCiudadano, :idProceso, :indiceProceso, :indiceFecha, :indiceAnotacion, :fecha);";
+            $resultado = ConexionBase::getConexion()->prepare($consulta);
             $resultado->bindValue(":idCiudadano", $idCiudadano);
-            $resultado->bindValue(":indiceProceso", $indiceProcesoRealizado);
-            $resultado->bindValue(":indiceFecha", $indiceFechas);
-            $resultado->bindValue(":indiceAnotacion", $indiceAnotaciones);
+            $resultado->bindValue(":idProceso", $idProceso);
+            $resultado->bindValue(":indiceProceso", "");
+            $resultado->bindValue(":indiceFecha", "");
+            $resultado->bindValue(":indiceAnotacion", "");
             $resultado->bindValue(":fecha", $fecha);
             $resultado->execute();
-
             if(!$resultado){
-                echo "<br>error al insertar";
+                echo "<br>error al insertar<br>";
             }else{
-                // ELIMINAR ESTE ELSE, SOLO ES INFORMATIVO TEMPORAL
-                echo "<br>se inserto correctamente";
+                $this->indiceProcesosRealizados = array();
+                $this->indiceFechasRealizadas = array();
+                $this->indiceAnotacionesRealizadas = array();
+            }
+        }
+    }
+
+    // [Actualizar datos a la base] (Debe ser llamado desde una funcion add, delete, update) {Actualiza registros en la base}
+    private function setUpdateBDO(){
+        setlocale(LC_ALL, "es_ES");
+        $fecha = date("d") . "/" . date("m") . "/" . date("Y");
+        $this->setVariablesString();
+        $consulta = "UPDATE LISTA_CIUDADANOS_PROCESO_PROGRAMA SET INDICE_PROCESO = :indiceProceso, INDICE_FECHAS = :indiceFechas, INDICE_ANOTACIONES = :indiceAnotaciones, ULTIMA_ACTUALIZACION = :fecha WHERE ID_CIUDADANO = :idCiudadano;";
+            $resultado = ConexionBase::getConexion()->prepare($consulta);
+            $resultado->bindValue(":idCiudadano", $this->idCiudadano);
+            $resultado->bindValue(":indiceProceso", $this->stringProcesos);
+            $resultado->bindValue(":indiceFechas", $this->stringFechas);
+            $resultado->bindValue(":indiceAnotaciones", $this->stringAnotaciones);
+            $resultado->bindValue(":fecha", $fecha);
+            $resultado->execute();
+            if(!$resultado){
+                echo "<br>error al actualizar<br>";
+            }
+    }
+
+    // [Obtener procesos de los programas] (Debe ser llamado desde el constructor) {Consulta los procesos existentes y los guarda en texto}
+    private function getProcesosPrograma(){
+        $idProceso = $this->idProceso;
+        $consulta = "SELECT PASOS, FECHAS FROM LISTA_PROCESOS WHERE ID_PROGRAMA = :idProceso";
+        $resultado = ConexionBase::getConexion()->prepare($consulta);
+        $resultado->bindValue(":idProceso", $this->idProceso);
+        $resultado->execute();
+        $resultado = $resultado->fetch(PDO::FETCH_ASSOC);
+
+        if(!$resultado){
+            echo "<br>error al consultar<br>";
+        }else{
+            $this->stringProcesosDBO = $resultado['PASOS'];
+            $this->stringFechasDBO = $resultado['FECHAS'];
+        }
+    }
+
+    // [Guardar datos de procesos programa] (Debe ser llamado desde el constructor) {convierte los datos obtenidos y los convierte en arreglo}
+    private function setProcesosProgramasArray(){
+        $this->arrayProcesosDBO = $this->cadenaAArreglo($this->stringProcesosDBO);
+        $this->arrayFechasDBO = $this->cadenaAArreglo($this->stringFechasDBO);
+    }
+
+    // [Comparar datos obtenidos con disponibles] (Debe ser llamado desde el constructor) {Revisa cuales son los procesos ya realizados con las listas obtenida}
+    protected function getRevisarProcesosCompletados(){
+
+        $programasRealizados = $this->indiceProcesosRealizados;
+        $listaProcesos = $this->arrayProcesosDBO;
+        $programasRealizadosLista = array();
+
+        foreach ($programasRealizados as $item => $value){
+            $programasRealizadosLista[] = $item;
+        }
+
+        foreach ($listaProcesos as $item => $value){
+            $totalComparaciones = 0;
+            $coincidencias = 0;
+
+            foreach($programasRealizadosLista as $comparacion){
+                ++$totalComparaciones;
+                if($comparacion == $item){
+                    $coincidencias--;
+                }else{
+                    $coincidencias++;
+                }
+            }
+
+            if($coincidencias != $totalComparaciones){
+                // Se detecto que el programa esta completo
+                echo "
+                <tr>
+                    <td>".$this->getBusquedaProcesosLista($item)."</td>
+                    <td>".$this->getBusquedaFecha($item)."</td>
+                    <td>".$this->getBusquedaFechasLista($item)."</td>
+                    <td>Completado</td>
+                    <td>".$this->getBusquedaAnotaciones($item)."</td>
+                    <td><input type=\"checkbox\" checked></td>
+                </tr>";
+
+
+            }else{
+                // No realizado aun
+                echo "
+                <tr>
+                    <td>".$this->getBusquedaProcesosLista($item)."</td>
+                    <td>-</td>
+                    <td>".$this->getBusquedaFechasLista($item)."</td>
+                    <td>Pendiente</td>
+                    <td>Solo disponible al completar</td>
+                    <td><input type=\"checkbox\"></td>
+                </tr>";
             }
         }
     }
