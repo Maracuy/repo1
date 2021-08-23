@@ -1,6 +1,6 @@
 <?php
-
-include_once('pruebas.php');
+// Desmarcar cuando se quiera realizar alguna prueba
+// include_once('pruebas.php');
 
 class ConexionBase{
     public static function getConexion(){
@@ -177,37 +177,37 @@ class CiudadanosLista{
     }
 
     // [Busqueda por indice - proceso] (recibe indice) {retorna una cadena (proceso) con el valor del contenido segun el indice}
-    protected function getBusquedaProceso($indice){
+    public function getBusquedaProceso($indice){
         $existencia = $this->existenciaIndiceEnArray($indice, $this->indiceProcesosRealizados);
         return $existencia ? $this->indiceProcesosRealizados[$indice] : false;
     }
 
     // [Busqueda por indice - fecha] (recibe indice) {retorna una cadena (fecha) con el valor del contenido segun el indice}
-    protected function getBusquedaFecha($indice){
+    public function getBusquedaFecha($indice){
         $existencia = $this->existenciaIndiceEnArray($indice, $this->indiceFechasRealizadas);
         return $existencia ? $this->indiceFechasRealizadas[$indice] : false;
     }
 
     // [Busqueda por indice - Anotaciones] (recibe indice) {retorna una cadena (Anotaciones) con el valor del contenido segun el indice}
-    protected function getBusquedaAnotaciones($indice){
+    public function getBusquedaAnotaciones($indice){
         $existencia = $this->existenciaIndiceEnArray($indice, $this->indiceAnotacionesRealizadas);
         return $existencia ? $this->indiceAnotacionesRealizadas[$indice] : false;
     }
 
     // [Busqueda por indice - procesos lista] (recibe indice) {retorna una cadena (proceso) con el valor del contenido segun el indice}
-    protected function getBusquedaProcesosLista($indice){
+    public function getBusquedaProcesosLista($indice){
         $existencia = $this->existenciaIndiceEnArray($indice, $this->arrayProcesosDBO);
         return $existencia ? $this->arrayProcesosDBO[$indice] : false;
     }
 
     // [Busqueda por indice - fechas lista] (recibe indice) {retorna una cadena (fechas) con el valor del contenido segun el indice}
-    protected function getBusquedaFechasLista($indice){
+    public function getBusquedaFechasLista($indice){
         $existencia = $this->existenciaIndiceEnArray($indice, $this->arrayFechasDBO);
         return $existencia ? $this->arrayFechasDBO[$indice] : false;
     }
 
     // [Guardar arreglo en objeto como texto] (no recibe nada, es una funcion) {Guarda un arreglo en variables de texto para base de datos}
-    private function setVariablesString(){
+    public function setVariablesString(){
         $this->stringProcesos = $this->arregloACadena($this->indiceProcesosRealizados);
         $this->stringFechas = $this->arregloACadena($this->indiceFechasRealizadas);
         $this->stringAnotaciones = $this->arregloACadena($this->indiceAnotacionesRealizadas);
@@ -304,6 +304,7 @@ class CiudadanosLista{
         $programasRealizados = $this->indiceProcesosRealizados;
         $listaProcesos = $this->arrayProcesosDBO;
         $programasRealizadosLista = array();
+        $indiceHTML = 0;
 
         foreach ($programasRealizados as $item => $value){
             $programasRealizadosLista[] = $item;
@@ -321,7 +322,7 @@ class CiudadanosLista{
                     $coincidencias++;
                 }
             }
-
+            $indiceHTML++;
             if($coincidencias != $totalComparaciones){
                 // Se detecto que el programa esta completo
                 echo "
@@ -330,11 +331,10 @@ class CiudadanosLista{
                     <td>".$this->getBusquedaFecha($item)."</td>
                     <td>".$this->getBusquedaFechasLista($item)."</td>
                     <td>Completado</td>
-                    <td>".$this->getBusquedaAnotaciones($item)."</td>
-                    <td><input type=\"checkbox\" checked></td>
+                    <td>".$this->getBusquedaAnotaciones($item)."<input id=\"btnCerrarModal3\" class=\"btn btnEditarCampo\" type=\"button\" value=\"Editar\" onclick=\"
+                    crearCamposEditables3({$indiceHTML}, {$item});\"></td>
+                    <td><input type=\"button\" value=\"Desmarcar\" onclick=\"crearCamposEditables2({$indiceHTML}, {$item});\" class=\"btn btn-danger\"></td>
                 </tr>";
-
-
             }else{
                 // No realizado aun
                 echo "
@@ -344,7 +344,7 @@ class CiudadanosLista{
                     <td>".$this->getBusquedaFechasLista($item)."</td>
                     <td>Pendiente</td>
                     <td>Solo disponible al completar</td>
-                    <td><input type=\"checkbox\"></td>
+                    <td><input type=\"button\" value=\"Completar\" onclick=\"crearCamposEditables({$indiceHTML}, {$item});\" class=\"btn btn-success\"></td>
                 </tr>";
             }
         }
