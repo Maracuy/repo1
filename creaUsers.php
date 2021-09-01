@@ -1,10 +1,4 @@
-<?php
 
-include 'admin/controlador/ClassPermisos.php';
-
-$permiso = new Permisos();
-
-?>
 <h4>Crear usuario y contraseña</h4>
 <form action="admin/controlador/permisossql.php" method="post">
 
