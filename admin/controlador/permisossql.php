@@ -1,9 +1,5 @@
 <?php
-
 require_once '../../conection/conexion.php';
-
-var_dump($_POST);
-
 
 function nuevo($con, $user, $passsegura){
     $sql_editar = "INSERT INTO ciudadanos (usuario_sistema, contrasenia, nivel) VALUES ('$user', '$passsegura', 0)";
@@ -12,11 +8,10 @@ function nuevo($con, $user, $passsegura){
         $sentencia_agregar->execute();
         echo "Si se registro";
     }catch(Exception $e){
-        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        echo 'No se registró: ',  $e->getMessage(), "\n";
         die();
-    }  
+    }
 }
-
 
 function crear($con, $id, $user, $passsegura, $nivel){
     $sql_editar = "UPDATE ciudadanos SET usuario_sistema = ?, contrasenia = ?, nivel = ? WHERE id_ciudadano = ?";
@@ -24,7 +19,7 @@ function crear($con, $id, $user, $passsegura, $nivel){
     try{
         $sentencia_agregar->execute(array($user, $passsegura, $nivel, $id));
     }catch(Exception $e){
-        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        echo 'No se creó el usuario: ',  $e->getMessage(), "\n";
         die();
     }  
 }
@@ -35,7 +30,7 @@ function actualizar($con, $id, $passsegura){
     try{
         $sentencia_agregar->execute(array($passsegura, $id));
     }catch(Exception $e){
-        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        echo 'No se actualizó el usuario: ',  $e->getMessage(), "\n";
         die();
     }  
 }
@@ -46,7 +41,7 @@ function nivel($con, $id, $nivel){
     try{
         $sentencia_agregar->execute(array($nivel, $id));
     }catch(Exception $e){
-        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        echo 'No se modificó el nivel: ',  $e->getMessage(), "\n";
         die();
     }  
 }
