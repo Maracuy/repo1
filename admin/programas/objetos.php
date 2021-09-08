@@ -217,37 +217,47 @@ class CiudadanosLista{
     private function getDatosDBO($idCiudadano, $idProceso){
         setlocale(LC_ALL, "es_ES");
         $fecha = date("d") . "/" . date("m") . "/" . date("Y");
-        $consulta = "SELECT ID_CIUDADANO FROM lista_ciudadanos_proceso_programa WHERE ID_CIUDADANO = :idCiudadano;";
-        $resultado = ConexionBase::getConexion()->prepare($consulta);
-        $resultado->bindValue(":idCiudadano", $idCiudadano);
-        $resultado->execute();
-        $registro = $resultado->rowCount();
-        if ($registro != 0) {
-            $consulta = "SELECT INDICE_PROCESO, INDICE_FECHAS, INDICE_ANOTACIONES FROM lista_ciudadanos_proceso_programa WHERE ID_CIUDADANO = :idCiudadano AND ID_PROCESO = :idProceso;";
-            $resultado = ConexionBase::getConexion()->prepare($consulta);
-            $resultado->bindValue(":idCiudadano", $idCiudadano);
-            $resultado->bindValue(":idProceso", $idProceso);
-            $resultado->execute();
-            $resultado = $resultado->fetch(PDO::FETCH_ASSOC);
+        $consulta31 = "SELECT ID_CIUDADANO FROM lista_ciudadanos_proceso_programa WHERE ID_CIUDADANO = :idCiudadano;";
+        $resultado32 = ConexionBase::getConexion()->prepare($consulta31);
+        $resultado32->bindValue(":idCiudadano", $idCiudadano);
+        $resultado32->execute();
+        $registro33 = $resultado32->rowCount();
 
-            if(!$resultado){
-                echo "<br>error al consultar<br>";
+
+        if ($registro33 != 0) {
+            $consulta9 = "SELECT INDICE_PROCESO, INDICE_FECHAS, INDICE_ANOTACIONES FROM lista_ciudadanos_proceso_programa WHERE ID_CIUDADANO = :idCiudadano AND ID_PROCESO = :idProceso;";
+            $resultado10 = ConexionBase::getConexion()->prepare($consulta9);
+            $resultado10->bindValue(":idCiudadano", $idCiudadano);
+            $resultado10->bindValue(":idProceso", $idProceso);
+            $resultado10->execute();
+            $resultado11 = $resultado10->fetch(PDO::FETCH_ASSOC);
+
+            if(!$resultado11){
+                echo "<br>error al consultar error, {$idCiudadano}, {$idProceso}<br>";
+
+                
             }else{
-                $this->indiceProcesosRealizados = $this->cadenaAArreglo($resultado['INDICE_PROCESO']);
-                $this->indiceFechasRealizadas = $this->cadenaAArreglo($resultado['INDICE_FECHAS']);
-                $this->indiceAnotacionesRealizadas = $this->cadenaAArreglo($resultado['INDICE_ANOTACIONES']);
+                $this->indiceProcesosRealizados = $this->cadenaAArreglo($resultado11['INDICE_PROCESO']);
+                $this->indiceFechasRealizadas = $this->cadenaAArreglo($resultado11['INDICE_FECHAS']);
+                $this->indiceAnotacionesRealizadas = $this->cadenaAArreglo($resultado11['INDICE_ANOTACIONES']);
             }
+
+
+
+
+
+
         }else{
-            $consulta = "INSERT INTO LISTA_CIUDADANOS_PROCESO_PROGRAMA(ID_CIUDADANO, ID_PROCESO, INDICE_PROCESO, INDICE_FECHAS, INDICE_ANOTACIONES, ULTIMA_ACTUALIZACION) VALUES (:idCiudadano, :idProceso, :indiceProceso, :indiceFecha, :indiceAnotacion, :fecha);";
-            $resultado = ConexionBase::getConexion()->prepare($consulta);
-            $resultado->bindValue(":idCiudadano", $idCiudadano);
-            $resultado->bindValue(":idProceso", $idProceso);
-            $resultado->bindValue(":indiceProceso", "");
-            $resultado->bindValue(":indiceFecha", "");
-            $resultado->bindValue(":indiceAnotacion", "");
-            $resultado->bindValue(":fecha", $fecha);
-            $resultado->execute();
-            if(!$resultado){
+            $consulta25 = "INSERT INTO LISTA_CIUDADANOS_PROCESO_PROGRAMA(ID_CIUDADANO, ID_PROCESO, INDICE_PROCESO, INDICE_FECHAS, INDICE_ANOTACIONES, ULTIMA_ACTUALIZACION) VALUES (:idCiudadano, :idProceso, :indiceProceso, :indiceFecha, :indiceAnotacion, :fecha);";
+            $resultado26 = ConexionBase::getConexion()->prepare($consulta25);
+            $resultado26->bindValue(":idCiudadano", $idCiudadano);
+            $resultado26->bindValue(":idProceso", $idProceso);
+            $resultado26->bindValue(":indiceProceso", "");
+            $resultado26->bindValue(":indiceFecha", "");
+            $resultado26->bindValue(":indiceAnotacion", "");
+            $resultado26->bindValue(":fecha", $fecha);
+            $resultado26->execute();
+            if(!$resultado26){
                 echo "<br>error al insertar<br>";
             }else{
                 $this->indiceProcesosRealizados = array();
@@ -278,17 +288,17 @@ class CiudadanosLista{
     // [Obtener procesos de los programas] (Debe ser llamado desde el constructor) {Consulta los procesos existentes y los guarda en texto}
     private function getProcesosPrograma(){
         $idProceso = $this->idProceso;
-        $consulta = "SELECT PASOS, FECHAS FROM LISTA_PROCESOS WHERE ID_PROGRAMA = :idProceso";
-        $resultado = ConexionBase::getConexion()->prepare($consulta);
-        $resultado->bindValue(":idProceso", $this->idProceso);
-        $resultado->execute();
-        $resultado = $resultado->fetch(PDO::FETCH_ASSOC);
+        $consulta6 = "SELECT PASOS, FECHAS FROM LISTA_PROCESOS WHERE ID_PROGRAMA = :idProceso";
+        $resultado6 = ConexionBase::getConexion()->prepare($consulta6);
+        $resultado6->bindValue(":idProceso", $this->idProceso);
+        $resultado6->execute();
+        $resultado7 = $resultado6->fetch(PDO::FETCH_ASSOC);
 
-        if(!$resultado){
-            echo "<br>error al consultar<br>";
+        if(!$resultado7){
+            echo "<br>error al consultar obtener , {$idProceso}<br>";
         }else{
-            $this->stringProcesosDBO = $resultado['PASOS'];
-            $this->stringFechasDBO = $resultado['FECHAS'];
+            $this->stringProcesosDBO = $resultado7['PASOS'];
+            $this->stringFechasDBO = $resultado7['FECHAS'];
         }
     }
 

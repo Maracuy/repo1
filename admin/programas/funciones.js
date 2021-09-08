@@ -59,8 +59,17 @@ function crearCamposEditables(indice, item){
     };
 }
 
+
+
 function crearModalAgregar(item){
-    let modal = "<div class=\"modalContainer\" id=\"modalFormUp\"><div class=\"displayWindow\"><form action=\"registro_programas.php?agregar=1&procesor=" + item +"\" id=\"formularioAgregar\" method=\"post\"><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Descripción</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputDescripcion\" name=\"inputDescripcion\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Fecha</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputFecha\" name=\"inputFecha\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Nota</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputNota\" name=\"inputNota\"></div></div><div class=\"containerBtns\"><a class=\"btn btn-danger\" id=\"btnCerrarModal\">Cancelar</a><input type=\"submit\" id=\"btnCompletarRegistro\" name=\"btnCompletarRegistro\" value=\"Completar\" class=\"btn btn-success\"></div></form></div></div>";
+
+    var ruta = location.href;
+    
+
+    var url = ruta+"&agregar=1&procesor=" + item + "";
+
+
+    let modal = "<div class=\"modalContainer\" id=\"modalFormUp\"><div class=\"displayWindow\"><form action=\"" + url + "\" id=\"formularioAgregar\" method=\"post\"><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Descripción</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputDescripcion\" name=\"inputDescripcion\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Fecha</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputFecha\" name=\"inputFecha\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Nota</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputNota\" name=\"inputNota\"></div></div><div class=\"containerBtns\"><a class=\"btn btn-danger\" id=\"btnCerrarModal\">Cancelar</a><input type=\"submit\" id=\"btnCompletarRegistro\" name=\"btnCompletarRegistro\" value=\"Completar\" class=\"btn btn-success\"></div></form></div></div>";
 
     document.body.insertAdjacentHTML('beforeend', modal);
 }
@@ -90,7 +99,11 @@ function crearCamposEditables2(indice, item){
 }
 
 function crearModalEliminar(item){
-    let modal = "<div class=\"modalContainer\" id=\"modalFormUp2\"><div class=\"displayWindow\"><form action=\"registro_programas.php?agregar=2&procesor=" + item +"\" method=\"post\"><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Se eliminará:</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputElemento\" name=\"inputFecha2\"></div></div><div class=\"containerBtns\"><a class=\"btn btn-success\" id=\"btnCerrarModal2\">Cancelar</a><input type=\"submit\" id=\"btnCompletarRegistro\" name=\"btnCompletarRegistro\" value=\"Si, eliminar\" class=\"btn btn-danger\"></div></form></div></div>";
+
+    var ruta = location.href;
+    
+    var url = ruta+"&agregar=2&procesor=" + item + "";
+    let modal = "<div class=\"modalContainer\" id=\"modalFormUp2\"><div class=\"displayWindow\"><form action=\"" + url + "\" method=\"post\"><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Se eliminará:</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputElemento\" name=\"inputFecha2\"></div></div><div class=\"containerBtns\"><a class=\"btn btn-success\" id=\"btnCerrarModal2\">Cancelar</a><input type=\"submit\" id=\"btnCompletarRegistro\" name=\"btnCompletarRegistro\" value=\"Si, eliminar\" class=\"btn btn-danger\"></div></form></div></div>";
 
     document.body.insertAdjacentHTML('beforeend', modal);
 }
@@ -143,7 +156,14 @@ function crearCamposEditables3(indice, item){
 }
 
 function crearModalEditar(item){
-    let modal = "<div class=\"modalContainer\" id=\"modalFormUp3\"><div class=\"displayWindow\"><form action=\"registro_programas.php?agregar=3&procesor=" + item +"\" method=\"post\"><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Descripción</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputDescripcion3\" name=\"inputDescripcion3\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Fecha</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputFecha3\" name=\"inputFecha3\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Editar Nota</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputNota3\" name=\"inputNota3\"></div></div><div class=\"containerBtns\"><a class=\"btn btn-danger\" onclick=\"cerrarVentanaEditable();\" id=\"btnCerrarModal3\">Cancelar</a><input type=\"submit\" name=\"btnCompletarRegistro\" value=\"Completar\" class=\"btn btn-success\"></div></form></div></div>";
+
+
+    var ruta = location.href;
+    
+
+    var url = ruta+"&agregar=3&procesor=" + item + "";
+
+    let modal = "<div class=\"modalContainer\" id=\"modalFormUp3\"><div class=\"displayWindow\"><form action=\"" + url + "\" method=\"post\"><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Descripción</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputDescripcion3\" name=\"inputDescripcion3\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Fecha</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputFecha3\" name=\"inputFecha3\"></div></div><div class=\"containerInputs\"><div class=\"subContentInputs\"><label class=\"lblDescription\">Editar Nota</label></div><div class=\"subContentInputs\"><input type=\"text\" class=\"inputDescription\" id=\"inputNota3\" name=\"inputNota3\"></div></div><div class=\"containerBtns\"><a class=\"btn btn-danger\" onclick=\"cerrarVentanaEditable();\" id=\"btnCerrarModal3\">Cancelar</a><input type=\"submit\" name=\"btnCompletarRegistro\" value=\"Completar\" class=\"btn btn-success\"></div></form></div></div>";
 
     document.body.insertAdjacentHTML('beforeend', modal);
 }

@@ -41,9 +41,12 @@ td a {
     <div class="lname-containerGrl" id="lname-containerGrl">
 
     <?php
-       include_once('panelPrograma.php');
-      //  include_once('programas/busqueda.php');
-     // include_once('programas/crearPrograma.php');
+        
+
+        include_once('programas/solicitudNueva.php');
+
+
+
     ?>
    
     </div>
