@@ -557,3 +557,329 @@ th:last-child, tr:last-child, td:last-child{
     align-items: center;
     justify-content: center;
 }
+
+/*  ESTILOS DE LA NUEVA VISTA PRINCIPAL  */
+
+:root{
+    --fondo_Botones: #444444;
+    --color_letras: white;
+}
+
+.NContenedorTabla{
+    width: 100%;
+    padding: 25px 0;
+   /* background: green;*/
+}
+
+.NContenedorBotonesAntesTabla{
+    width: 95%;
+    margin-left: 2.5%;
+  /*  background: aqua;*/
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.NbotonDivNuevaAccion{
+    padding: 8px 10px;
+    background: var(--fondo_Botones);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.NbotonDivContenedorCosas{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+    color: var(--color_letras);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.NbotonDivContenedorCosas p{
+    margin: 0;
+}
+
+.NbotonDivContenedorCosas:nth-child(2){
+    margin-top: 5px;
+    padding: 4px 0;
+    cursor: pointer;
+    flex-direction: column;
+    display: none;
+}
+
+.NbotonDivContenedorLista{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 4px;
+    color: var(--color_letras);
+    border-radius: 4px;
+}
+
+.NbotonDivContenedorLista:hover{
+    background: rgba(0,0,0,.3);
+}
+
+.NetiquetaANoEstilos{
+    outline: none;
+    text-decoration: none;
+}
+
+#NContenedorBotonGeneral:hover > #NContenedorBoton{
+    display: flex;
+}
+
+.NseparadoAncho{
+    width: 80px;
+}
+
+.NbotonAccionTabla{
+    padding: 8px 10px;
+  /*  background: green;*/
+    margin-left: 10px;
+    margin-top: 10px;
+    background: var(--fondo_Botones);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.NbotonAccionTabla p{
+    color: var(--color_letras);
+    margin: 0;
+}
+
+.NcontenedorTextoTituloBotones{
+    color: rgba(68,68,68,.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.NcontenedorTextoTituloBotones p{
+    margin: 0;
+    font-size: 20px;
+}
+
+.NbloqueInformacionNumeros{
+    padding: 4px;
+   /* background: pink;*/
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NbloqueInformacionContenido{
+    padding: 4px;
+   /* background: orange;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NbloqueInformacionContenido p{
+    margin: 0;
+    color: #444444;
+    font-weight: bold;
+}
+
+.NbloqueInformacionInput{
+    outline: none;
+    border: none;
+    width: 35px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.3);
+}
+
+.NbloqueInformacionInputPeriodo{
+    width: 150px;
+}
+
+.NTablaElementosVista{
+    width: 100%;
+    background: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.NFilaTablaElementosVista{
+    width: 100%;
+    padding: 8px 5px;
+    background: orange;
+}
+
+.NContenedorTituloFila{
+    padding: 0;
+    /*background: #9da007;*/
+}
+
+.NContenedorTituloFila p{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,.7);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.NFilaTablaElementosIconos{
+    padding: 0 10px;
+    background: green;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.NFilaTablaIcono{
+    width: 25px;
+    height: 25px;
+    background: coral;
+}
+
+.NRTablaBase{
+    width: 100%;
+    margin-top: 0;
+    left: 0;
+    border: none;
+}
+
+.NRTablaBase tr:nth-child(even) {
+    background: rgba(0,0,0,.07);
+}
+
+.NbotonAccionTablaV2{
+    padding: 8px 10px;
+  /*  background: green;*/
+    margin-left: 10px;
+    margin-top: 10px;
+    background: var(--fondo_Botones);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--color_letras);
+    border: none;
+}
+
+.NRVentanaModalContenedor{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.45);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.NRVentanaModal{
+    padding: 7px;
+    background: white;
+    border-radius: 8px;
+    max-width: 500px;
+   /* max-height: 100%;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.NRVentanaModalContenedorTexto{
+    padding: 2px 5px;
+   /* background: orange;*/
+}
+
+.NRVentanaModalContenedorTexto p{
+    margin: 0;
+    padding: 0;
+}
+
+.NRVentanaModalContenedorTexto span{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.NRVentanaIconoCerrar{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.NRVentanaIconoCerrar span{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.NRCIcon{
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 22px;
+    height: 22px;
+  /*  background: green;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    cursor: pointer;
+    color: #999999;
+}
+
+.NRPeligroColor{
+    color: #BB2B14;
+}
+
+.NRNuevoColor{
+    color: #16AFD8;
+}
+
+.NRVulColor{
+    color: #C21579;
+}
+
+.NREstadoColor{
+    color: #0DAA3C;
+}
+
+.NRASe{
+    outline: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+

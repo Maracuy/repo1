@@ -24,7 +24,8 @@ if($_SESSION['user']['nivel'] == 9){
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/stylePanelPrograma.css">
+    <!--<link rel="stylesheet" href="css/stylePanelPrograma.css">-->
+    <link rel="stylesheet" href="css/panelStyles.css">
     
 <style>
 /*tr:hover { background: gray; }*/
@@ -43,7 +44,12 @@ td a {
     <?php
         // incluido con ficha include_once('panelPrograma.php');
          //  include_once('programas/busqueda.php');
-        include_once('programas/crearPrograma.php');
+      // esta era la pestaña incluida  include_once('programas/crearPrograma.php');
+
+        // Nueva pestaña de inicio [Vista principal]
+        include_once('NuevoProgramas/index.php');
+
+
     ?>
    
     </div>
