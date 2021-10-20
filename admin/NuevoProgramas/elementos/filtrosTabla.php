@@ -38,6 +38,9 @@
         <a href="<?= $_SERVER['PHP_SELF']; ?>?tc=9" class="botonFiltro botonFiltroHover">
             Pendientes
         </a>
+        <a href="<?= $_SERVER['PHP_SELF']; ?>?tc=10" class="botonFiltro botonFiltroHover">
+            Vulnerables
+        </a>
     </div>
     <div class="ContenedorContenidoBasesTitulo">
         <p>
@@ -208,18 +211,18 @@
                     </select>
                     <select class="botonFiltro" id="FechaMesHastaH">
                         <option value="" hidden selected>Mes</option>
-                        <option value="01">enero</option>
-                        <option value="02">febrero</option>
-                        <option value="03">marzo</option>
-                        <option value="04">abril</option>
-                        <option value="05">mayo</option>
-                        <option value="06">junio</option>
-                        <option value="07">julio</option>
-                        <option value="08">agosto</option>
-                        <option value="09">septiembre</option>
-                        <option value="10">octubre</option>
-                        <option value="11">noviembre</option>
-                        <option value="12">diciembre</option>
+                        <option value="01">Enero</option>
+                        <option value="02">Febrero</option>
+                        <option value="03">Marzo</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Mayo</option>
+                        <option value="06">Junio</option>
+                        <option value="07">Julio</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
                     </select>
                     <select class="botonFiltro" id="FechaAnoHastaH" onclick="addYear(this);">
                         <option value="" hidden selected>Año</option>
