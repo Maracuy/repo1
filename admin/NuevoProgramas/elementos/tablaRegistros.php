@@ -1,4 +1,4 @@
-<!-- Seccion de tabla con contenido [Hacer tabla y agregar paginacion]-->
+<!-- Seccion de tabla con contenido [Hacer que los resultados se muestren cada cierto tiempo sin necesidad de actualizar]-->
 
 
 
@@ -14,6 +14,7 @@ function verificarVariable($abr){
 }
 
 // Definicion de la consulta SQL que se realizara segun sea el caso
+
 if(isset($_GET['tc'])){
     $tipoConsulta = filter_var($_GET['tc'], FILTER_SANITIZE_NUMBER_INT);
 
@@ -29,9 +30,9 @@ if(isset($_GET['tc'])){
             if($errores == 0){
                 $fechaInicialArmada = $variablesFechas[2] . "-" . $variablesFechas[1] . "-" . $variablesFechas[0];
                 $fechaFinalArmada = $variablesFechas[5] . "-" . $variablesFechas[4] . "-" . $variablesFechas[3];
-                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE FECHA BETWEEN '{$fechaInicialArmada} 00:00:00' AND '{$fechaFinalArmada} 23:59:00' ORDER BY ID DESC;";
+                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE FECHA BETWEEN '{$fechaInicialArmada} 00:00:00' AND '{$fechaFinalArmada} 23:59:00' ORDER BY ID DESC";
             }else{
-                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC;";
+                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC";
             }
             break;
         case 2: 
@@ -46,54 +47,105 @@ if(isset($_GET['tc'])){
 
             if($errores == 0){
                 $fechaArmada = $variablesFechas[2] . "-" . $variablesFechas[1] . "-" . $variablesFechas[0];
-                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE FECHA BETWEEN '{$fechaArmada} 00:00:00' AND '{$fechaActual} 23:59:00' ORDER BY ID DESC;";
+                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE FECHA BETWEEN '{$fechaArmada} 00:00:00' AND '{$fechaActual} 23:59:00' ORDER BY ID DESC";
             }else{
-                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC;";
+                $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC";
             }
             break;
         case 3: 
             // Tipo de consulta: Hoy
-            $consulta = "SELECT * FROM REGISTRADOS_PROGRAMA WHERE YEAR(FECHA) = YEAR(CURRENT_DATE()) AND WEEK(FECHA) = WEEK(CURRENT_DATE()) AND DAY(FECHA) = DAY(CURRENT_DATE());";
+            $consulta = "SELECT * FROM REGISTRADOS_PROGRAMA WHERE YEAR(FECHA) = YEAR(CURRENT_DATE()) AND WEEK(FECHA) = WEEK(CURRENT_DATE()) AND DAY(FECHA) = DAY(CURRENT_DATE())";
             break;
         case 4: 
             // Tipo de consulta: Semanal
-            $consulta = "SELECT * FROM REGISTRADOS_PROGRAMA WHERE YEAR(FECHA) = YEAR(CURRENT_DATE()) AND WEEK(FECHA) = WEEK(CURRENT_DATE());";
+            $consulta = "SELECT * FROM REGISTRADOS_PROGRAMA WHERE YEAR(FECHA) = YEAR(CURRENT_DATE()) AND WEEK(FECHA) = WEEK(CURRENT_DATE())";
             break;
         case 5: 
             // Tipo de consulta: Mensual
-            $consulta = "SELECT * FROM REGISTRADOS_PROGRAMA WHERE YEAR(FECHA) = YEAR(CURRENT_DATE()) AND MONTH(FECHA) = MONTH(CURRENT_DATE());";
+            $consulta = "SELECT * FROM REGISTRADOS_PROGRAMA WHERE YEAR(FECHA) = YEAR(CURRENT_DATE()) AND MONTH(FECHA) = MONTH(CURRENT_DATE())";
             break;
         case 6: 
             // Tipo de consulta: Todos
-            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC;";
+            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC";
             break;
         case 7: 
             // Tipo de consulta: Urgentes
-            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE URGENTE = TRUE;";
+            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE URGENTE = TRUE";
             break;
         case 8: 
             // Tipo de consulta: Nuevos
-            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE NUEVO = TRUE;";
+            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE NUEVO = TRUE";
             break;
         case 9: 
             // Tipo de consulta: Pendientes
-            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE PENDIENTE = TRUE;";
+            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE PENDIENTE = TRUE";
             break;
         case 10: 
             // Tipo de consulta: Vulnerables
-            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE VULNERABLE = TRUE;";
+            $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES WHERE VULNERABLE = TRUE";
             break;
     }
 }else{
-    $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC;";
+    $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC";
 }
 
-// Mostrar consulta ([Cuidado] solo visual, por y para referencias)
-echo "consulta: {$consulta}";
+
+try{
+
+    // Variables
+    $registrosPorPagina = 4;
+    $paginaActual = 0;
+    $paginaDefinida = false;
+
+    // Definiendo la pagina actual
+    if(isset($_GET['page'])){
+        $paginaDefinida = true;
+        $valorPagina = filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT);
+        (is_numeric($valorPagina)) ? $paginaActual = $valorPagina : $paginaActual = 1;
+        ($paginaActual <= 0) ? $paginaActual = 1 : $paginaActual;
+    }else{
+        $paginaActual = 1;
+    }
+
+    $resultado = conectarDBO::conexion()->prepare($consulta);
+    $resultado->execute(array());
+    $numeroRegistros = $resultado->rowCount();
+   // echo "<br>Registros: {$numeroRegistros}";
+    $resultado->closeCursor();
+
+
+    $paginasTotales = ceil($numeroRegistros / $registrosPorPagina);
+   // echo "<br>Registros por pagina: {$registrosPorPagina}";
+   // echo "<br>PaginasTotales: {$paginasTotales}";
+
+
+    ($paginaActual > $paginasTotales) ? $paginaActual = $paginasTotales : $paginaActual;
+
+
+    // linea que define desde donde se iniciara la paginacion (un mal trato podria causar errores)
+    if($paginaActual <= 0){
+        $empezarDesde = 0;
+    }else{
+        $empezarDesde = ($paginaActual - 1) * $registrosPorPagina;
+    }
+
+    // Generacion de nueva consulta para importar a la tabla
+    $consulta = $consulta . " LIMIT " . $empezarDesde . ", " . $registrosPorPagina . ";";
 
 
 
 
+
+}catch(Exception $e){
+    echo "Linea del error: " . $e->getLine();
+}
+
+
+
+
+
+// archivo que incluye la consulta a la base de datos y la que debera ser llamada cada 5 segundos
+include ('consultaTabla.php');
 
 
 
@@ -105,129 +157,3 @@ echo "consulta: {$consulta}";
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Tabla -->
-<div class="ContenedorTablaGeneral">
-
-    <!-- Corresponde a una fila de la tabla [Este es el titulo de las columnas]-->
-    <div class="ContenedorFilasContenido">
-        <div class="ItemFilaC">
-            ID
-        </div>
-        <div class="ItemFilaC">
-            Propiedades
-        </div>
-        <div class="ItemFilaC">
-            Beneficiario
-        </div>
-        <div class="ItemFilaC">
-            Solicitud
-        </div>
-        <div class="ItemFilaC">
-            Departamento
-        </div>
-        <div class="ItemFilaC">
-            Origen
-        </div>
-        <div class="ItemFilaC">
-            Avance
-        </div>
-        <div class="ItemFilaC">
-            Fecha/Hora
-        </div>
-    </div>
-
-    <!-- Corresponde a una fila de la tabla -->
-    <div class="ContenedorFilasContenido">
-        <div class="ItemFilaC">
-            551d8b
-        </div>
-        <div class="ItemFilaC">
-            {iconos}
-        </div>
-        <div class="ItemFilaC">
-            Nombre (CURP)
-        </div>
-        <div class="ItemFilaC">
-            Solicitud-Ejemplo
-        </div>
-        <div class="ItemFilaC">
-            Departamento Inicial
-        </div>
-        <div class="ItemFilaC">
-            Origen e
-        </div>
-        <div class="ItemFilaC">
-            10%
-        </div>
-        <div class="ItemFilaC">
-            dd/mm/aaaa
-        </div>
-    </div>
-
-    <!-- Corresponde a una fila de la tabla -->
-    <div class="ContenedorFilasContenido">
-        <div class="ItemFilaC">
-            551d8b
-        </div>
-        <div class="ItemFilaC">
-            {iconos}
-        </div>
-        <div class="ItemFilaC">
-            Nombre (CURP)
-        </div>
-        <div class="ItemFilaC">
-            Solicitud-Ejemplo
-        </div>
-        <div class="ItemFilaC">
-            Departamento Inicial
-        </div>
-        <div class="ItemFilaC">
-            Origen e
-        </div>
-        <div class="ItemFilaC">
-            10%
-        </div>
-        <div class="ItemFilaC">
-            dd/mm/aaaa
-        </div>
-    </div>
-
-
-</div>
-
-<!-- Botones de la tabla -->
-<div class="ContenedorDetallesTabla">
-    <!-- Flecha direccional [Fijo] -->
-    <div class="ElementoIconoPaginaContenedor ElementoIconoPaginaContenedorFlecha">
-        <span>
-            &#60;
-        </span>
-    </div>
-
-    <!-- Numero Pagina [Dinamico]-->
-    <div class="ElementoIconoPaginaContenedor">
-        <span>
-            N
-        </span>
-    </div>
-
-    <!-- Flecha direccional [Fijo] -->
-    <div class="ElementoIconoPaginaContenedor ElementoIconoPaginaContenedorFlecha">
-        <span>
-            &#62;
-        </span>
-    </div>
-</div>
