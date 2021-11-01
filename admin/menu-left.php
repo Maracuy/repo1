@@ -10,7 +10,7 @@
         <?php endif?>
 
         <?php if($_SESSION['user']['nivel'] < 8 ): // Solo los trabajadores pueden ver esto?> 
-            <a href="../admin/inicioProgramas.php" class="d-block text-light p-3"> <i class="fas fa-align-justify mr-2"></i> Programas </a>
+            <a href="../admin/inicioProgramas.php?tc=6" class="d-block text-light p-3"> <i class="fas fa-align-justify mr-2"></i> Programas </a>
         <?php endif?>
 
         <?php if($_SESSION['user']['nivel'] < 4 ): // Solo los ENCARGADOS para arriba pueden ver esto?> 

@@ -1,7 +1,10 @@
-let fechaContenedor = document.getElementById('idSpanFechaActual');
-var f = new Date();
-let fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-fechaContenedor.innerHTML = fecha;
+// Funciones tabla principal
+function addFechaAuto(){
+    let fechaContenedor = document.getElementById('idSpanFechaActual');
+    var f = new Date();
+    let fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+    fechaContenedor.innerHTML = fecha;
+}
 
 function addYear(elemento){
 
@@ -82,7 +85,6 @@ function rellenarFechaDesde(){
 }
 
 var estadoTextoFiltros = true;
-
 function abrirCerrarFiltros(){
     let contenedorFiltros = document.getElementById("contenedorFiltrosBotonesDisplay");
     let textoEstadoFiltro = document.getElementById("textoTituloFiltrosAC");
@@ -91,4 +93,7 @@ function abrirCerrarFiltros(){
     estadoTextoFiltros ^= true;
 }
 
-// Continuación
+// Funciones informacion de la solicitud
+function abrirContenedor(bloque){
+   bloque.parentNode.querySelector("container").classList.toggle('contenedorVisibilidadFiltros');
+}

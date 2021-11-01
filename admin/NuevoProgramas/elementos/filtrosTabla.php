@@ -233,3 +233,9 @@
     </div>
 </div>
 </div>
+
+<script src="NuevoProgramas/Js/Funciones.js">
+</script>
+<script>
+    addFechaAuto();
+</script>

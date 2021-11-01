@@ -5,19 +5,15 @@ include_once('Externo/conexiones.php');
 
 
 <?php
-// Filtros para tabla
-include_once('elementos/filtrosTabla.php');
+// Importar archivos (tabla o informacion de la solicitud)
+if(isset($_GET['ids'])){
+    // Información de solicitud
+    include_once('elementos/informacionSolicitud.php');
+}else{
+    // Filtros para tabla
+    include_once('elementos/filtrosTabla.php');
+    // Tabla paginada
+    include_once('elementos/tablaRegistros.php');
+}
 ?>
 
-
-<?php
-// Tabla paginada
-include_once('elementos/tablaRegistros.php');
-?>
-
-
-
-
-
-<script src="NuevoProgramas/Js/Funciones.js">
-</script>

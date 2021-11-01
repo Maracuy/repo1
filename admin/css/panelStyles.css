@@ -263,3 +263,153 @@
     cursor: pointer;
 }
 
+.contenedorTituloIS{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background: #444444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedorTituloIS p{
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.contenedorFichaTIS{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contenedorFichaTISTitulo{
+    background: rgba(0,0,0,.09);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+.contenedorFichaTISTitulo p{
+    text-transform: none;
+    color: #444444;
+    font-size: 16px;
+}
+
+.contenedorFilasInformacionIS{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+   /* background: chocolate;*/
+    display: grid;
+    grid-template-columns: .5fr .5fr;
+    grid-template-rows: 1fr;
+}
+
+.contenedorInformacionSolicitanteIS{
+  /*  background: crimson;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.contenedorInformacionSolicitanteIS p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.contenedorInformacionSolicitanteIS input{
+    outline: none;
+    border: none;
+    width: 80%;
+    height: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.4);
+    text-align: center;
+}
+
+.contenedorBotonesIS{
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botonEditarISForm{
+    padding: 5px 15px;
+    background: #1A456F;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    gap: 10px;
+    margin: 0 5px 0 5px;
+}
+
+.botonEditarISFormC{
+    background: #6F1A1A;
+}
+
+.botonEditarISFormG{
+    background: #206F1A;
+}
+
+/* tabla con datos */
+
+.contenedorFilasTablaInformacionIS{
+    width: 90%;
+    margin: 20px 0 20px 5%;
+}
+
+.filasISInformacionColumnas{
+    display: grid;
+    grid-template-columns: .5fr .5fr;
+    grid-template-rows: 1fr;
+}
+.contenedorFilaColumnaInformacionIS{
+    padding: 5px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedorFilaColumnaInformacionIS p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.InputFilaColumnaInformacionIS{
+    width: 100%;
+    height: 25px;
+    outline: none;
+    border: none;
+    text-align: center;
+    background: transparent;
+    border-bottom: 1px solid rgba(0,0,0,.3);
+}
+
+.InputFilaColumnaInformacionIS:disabled {
+    border: none;
+}
+
+.filasISInformacionColumnas:nth-child(odd){
+    background: rgba(0,0,0,0.1);
+}
+
+.contenedorFilaColumnaInformacionIS{
+    border: 1px solid rgba(0,0,0,.08);
+}
+
+/* desaparecer botones de tabla */
+.contenedorBotonesISAccionesGC{
+    display: none;
+}

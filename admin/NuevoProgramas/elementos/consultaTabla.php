@@ -1,4 +1,3 @@
-
 <!-- Tabla -->
 <div class="ContenedorTablaGeneral">
     <!-- Corresponde a una fila de la tabla [Este es el titulo de las columnas]-->

@@ -1,7 +1,4 @@
 <!-- Seccion de tabla con contenido [Hacer que los resultados se muestren cada cierto tiempo sin necesidad de actualizar]-->
-
-
-
 <?php
 
 // Verificar fecha (solo numeros) de GET
@@ -14,7 +11,6 @@ function verificarVariable($abr){
 }
 
 // Definicion de la consulta SQL que se realizara segun sea el caso
-
 if(isset($_GET['tc'])){
     $tipoConsulta = filter_var($_GET['tc'], FILTER_SANITIZE_NUMBER_INT);
 
@@ -89,7 +85,6 @@ if(isset($_GET['tc'])){
     $consulta = "SELECT * FROM INFORMACION_BASICA_SOLICITUDES ORDER BY ID DESC";
 }
 
-
 try{
 
     // Variables
@@ -140,20 +135,7 @@ try{
     echo "Linea del error: " . $e->getLine();
 }
 
-
-
-
-
-// archivo que incluye la consulta a la base de datos y la que debera ser llamada cada 5 segundos
+// archivo que incluye la consulta a la base de datos y formacion de tabla
 include ('consultaTabla.php');
-
-
-
-
-
-
-
-
-
 
 ?>
