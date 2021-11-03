@@ -394,11 +394,13 @@
     border: none;
     text-align: center;
     background: transparent;
-    border-bottom: 1px solid rgba(0,0,0,.3);
+    border-bottom: 2px solid rgba(99,153,232,.3);
+    color: rgba(99,153,232,1);
 }
 
 .InputFilaColumnaInformacionIS:disabled {
     border: none;
+    color: #0e0e0e;
 }
 
 .filasISInformacionColumnas:nth-child(odd){
@@ -410,6 +412,7 @@
 }
 
 /* desaparecer botones de tabla */
+
 .contenedorBotonesISAccionesGC{
     display: none;
 }

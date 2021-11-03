@@ -97,3 +97,68 @@ function abrirCerrarFiltros(){
 function abrirContenedor(bloque){
    bloque.parentNode.querySelector("container").classList.toggle('contenedorVisibilidadFiltros');
 }
+
+
+/*  
+    falta
+    - eliminar bug que provoca edicion de datos aunque el boton "cancelar" sea activado
+    - cancelar edicion automaticamente al cerrar pestaña
+*/
+
+
+function editarFormulario(boton){
+
+    // Ocultar boton "Editar"
+    boton.parentNode.classList.toggle('contenedorBotonesISAccionesGC');
+
+    // Obtener formulario a recorrer
+    let formulario = boton.parentNode.parentNode.parentNode;
+
+    // Mostrar botones "Cancelar/Guardar"
+    let contenedorBotones = boton.parentNode.parentNode.lastChild;
+    contenedorBotones.classList.toggle('contenedorBotonesISAccionesGC');
+
+    // Obtener inputs en formulario
+    let elementos = formulario.getElementsByClassName("inputTypeIS");
+    let formInput;
+
+    // Recorrer inputs y habilitarlos
+    for(i = 0; i < elementos.length; i++){
+        formInput = elementos[i];
+        formInput.disabled = false;
+    }
+}
+
+function botonCancelarFormulario(boton){
+
+    let contenedorBotonesGuardar = boton.parentNode;
+
+    // Mostrar boton "Editar"
+    let contenedorBotonEditar = contenedorBotonesGuardar.previousSibling;
+    contenedorBotonEditar.classList.toggle('contenedorBotonesISAccionesGC');
+
+    // Ocultar botones "Cancelar/Guardar"
+    contenedorBotonesGuardar.classList.toggle('contenedorBotonesISAccionesGC');
+
+    // Desactivar inputs
+    let formulario = contenedorBotonesGuardar.parentNode.parentNode;
+
+    console.log("el formulario es: " + formulario.classList);
+
+    // Obtener inputs en formulario
+    let elementos = formulario.getElementsByClassName("inputTypeIS");
+    let formInput;
+
+    // Recorrer inputs y habilitarlos
+    for(i = 0; i < elementos.length; i++){
+        formInput = elementos[i];
+        formInput.disabled = true;
+    }
+
+
+
+
+
+
+
+}
