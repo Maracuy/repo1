@@ -95,16 +95,40 @@ function abrirCerrarFiltros(){
 
 // Funciones informacion de la solicitud
 function abrirContenedor(bloque){
-   bloque.parentNode.querySelector("container").classList.toggle('contenedorVisibilidadFiltros');
+
+    let modoEdicion = bloque.getAttribute("data-btncancelar");
+
+    if(modoEdicion == "true"){
+        // Eliminar texto
+        bloque.setAttribute("data-btncancelar", false);
+        let item = bloque.querySelector('span[data-ediciongenerada="true"]');
+        bloque.removeChild(item);
+
+        let formulario = bloque.nextSibling;
+
+        // Mostrar boton "Editar"
+        let contenedorBotonEditar = formulario.firstChild.firstChild.nextSibling;
+        contenedorBotonEditar.classList.toggle('contenedorBotonesISAccionesGC');
+
+        // Ocultar botones "Cancelar/Guardar"
+        contenedorBotonEditar.nextSibling.classList.toggle('contenedorBotonesISAccionesGC');
+
+        // Obtener inputs en formulario
+        let elementos = formulario.getElementsByClassName("inputTypeIS");
+        let formInput;
+
+        // Recorrer inputs y desactivarlos
+        for(i = 0; i < elementos.length; i++){
+            formInput = elementos[i];
+            // resuelve el error que provoca que la edicion no sea cancelada correctamente
+            formInput.value = formInput.getAttribute("value");
+            formInput.disabled = true;
+        }
+    }
+
+    // Ocultar contenido
+    bloque.parentNode.querySelector("container").classList.toggle('contenedorVisibilidadFiltros');
 }
-
-
-/*  
-    falta
-    - eliminar bug que provoca edicion de datos aunque el boton "cancelar" sea activado
-    - cancelar edicion automaticamente al cerrar pestaña
-*/
-
 
 function editarFormulario(boton){
 
@@ -127,6 +151,11 @@ function editarFormulario(boton){
         formInput = elementos[i];
         formInput.disabled = false;
     }
+
+    // Cambiar el texto a Modo edicion
+    let contenedorTitulo = boton.parentNode.parentNode.parentNode.previousSibling;
+    contenedorTitulo.setAttribute("data-btncancelar", true);
+    contenedorTitulo.insertAdjacentHTML('beforeend', '<span data-ediciongenerada="true">.&#32;&#40;Editando contenido&#41;</span>');
 }
 
 function botonCancelarFormulario(boton){
@@ -143,22 +172,21 @@ function botonCancelarFormulario(boton){
     // Desactivar inputs
     let formulario = contenedorBotonesGuardar.parentNode.parentNode;
 
-    console.log("el formulario es: " + formulario.classList);
-
     // Obtener inputs en formulario
     let elementos = formulario.getElementsByClassName("inputTypeIS");
     let formInput;
 
-    // Recorrer inputs y habilitarlos
+    // Recorrer inputs y desactivarlos
     for(i = 0; i < elementos.length; i++){
         formInput = elementos[i];
+        // resuelve el error que provoca que la edicion no sea cancelada correctamente
+        formInput.value = formInput.getAttribute("value");
         formInput.disabled = true;
     }
 
-
-
-
-
-
-
+    // cambiar estado del boton Modo Edicion
+    let contenedorTitulo = formulario.previousSibling;
+    contenedorTitulo.setAttribute("data-btncancelar", false);
+    let item = contenedorTitulo.querySelector('span[data-ediciongenerada="true"]');
+    contenedorTitulo.removeChild(item);
 }

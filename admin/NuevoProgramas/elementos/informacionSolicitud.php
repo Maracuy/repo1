@@ -8,15 +8,15 @@
 <!-- Ficha de informacion, crear una por seccion (ejemplo; contacto, ubicacion, etc) -->
 <div class="contenedorFichaTIS">
     <!-- ficha de titulo que al darle click muestra/oculta resultados -->
-    <div class="contenedorTituloIS contenedorFichaTISTitulo" onclick="abrirContenedor(this);">
+    <div class="contenedorTituloIS contenedorFichaTISTitulo" data-btncancelar="false" onclick="abrirContenedor(this);">
         <p>
             Información solicitante
         </p>
     </div>
 
     <!-- contenedor para ocultar registros en caso de ser necesario -->
-    <form action="#" class="formulariopruebas">
-        <container>
+    <form action="#" method="post" class="formulariopruebas">
+        <container class="contenedorVisibilidadFiltros">
             <!-- tabla con la informacion requerida -->
             <div class="contenedorFilasTablaInformacionIS">
                 <!-- Esta fila debera ser dinamica y completada con la informacion de la base de datos -->
@@ -49,17 +49,10 @@
                         </p>
                     </div>
                     <div class="contenedorFilaColumnaInformacionIS">
-                        <input type="text" placeholder="Dato" class="InputFilaColumnaInformacionIS inputTypeIS" value="A" disabled>
+                        <input type="text" placeholder="Dato" class="InputFilaColumnaInformacionIS inputTypeIS" value="AA" disabled>
                     </div>
                 </div>
             </div>
-
-
-            <!--
-                Al presionar el boton de editar se debe recorrer el formulario y pasar los input a un estado activo
-                el boton de guardar envia el formulario mientras que el boton de cancelar oculta los botones y muestra el de edicion
-                desacxtivando los input        
-            -->
 
             <!-- Boton que al clickear activa el formulario -->
             <div class="contenedorBotonesIS">
@@ -69,11 +62,8 @@
             <!-- Botones de formulario -->
             <div class="contenedorBotonesIS contenedorBotonesISAccionesGC">
                 <input type="button" class="botonEditarISForm botonEditarISFormC" value="Cancelar" onclick="botonCancelarFormulario(this);">
-                <input type="button" class="botonEditarISForm botonEditarISFormG" value="Guardar">
+                <input type="submit" class="botonEditarISForm botonEditarISFormG" value="Guardar">
             </div>
-
-            
-
         </container>
     </form>
 </div>

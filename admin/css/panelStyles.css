@@ -296,10 +296,15 @@
     user-select: none; 
 }
 
-.contenedorFichaTISTitulo p{
+.contenedorFichaTISTitulo p, .contenedorFichaTISTitulo span{
     text-transform: none;
     color: #444444;
     font-size: 16px;
+}
+
+.contenedorFichaTISTitulo span{
+    color: #3B7538;
+    font-weight: bold;
 }
 
 .contenedorFilasInformacionIS{
@@ -394,13 +399,15 @@
     border: none;
     text-align: center;
     background: transparent;
-    border-bottom: 2px solid rgba(99,153,232,.3);
-    color: rgba(99,153,232,1);
+    border-bottom: 1px solid rgba(135,137,141,1);
+    color: rgba(104,106,109,1);
+    font-weight: bold;
 }
 
 .InputFilaColumnaInformacionIS:disabled {
-    border: none;
     color: #0e0e0e;
+    border: none;
+    font-weight: normal;
 }
 
 .filasISInformacionColumnas:nth-child(odd){
@@ -410,8 +417,6 @@
 .contenedorFilaColumnaInformacionIS{
     border: 1px solid rgba(0,0,0,.08);
 }
-
-/* desaparecer botones de tabla */
 
 .contenedorBotonesISAccionesGC{
     display: none;
