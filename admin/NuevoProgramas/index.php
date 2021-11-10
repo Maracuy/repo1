@@ -3,17 +3,21 @@
 include_once('Externo/conexiones.php');
 ?>
 
-
 <?php
 // Importar archivos (tabla o informacion de la solicitud)
 if(isset($_GET['ids'])){
-    // Información de solicitud
+    // Información del ciudadano
     include_once('elementos/informacionSolicitud.php');
+
+    // Información de las solicitudes
+    include_once('elementos/informacionSolicitud2.php');
+
 }else{
     // Filtros para tabla
     include_once('elementos/filtrosTabla.php');
+    
     // Tabla paginada
     include_once('elementos/tablaRegistros.php');
 }
-?>
 
+?>

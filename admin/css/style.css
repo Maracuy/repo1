@@ -43,3 +43,8 @@ body{
     height: 100vr;
     padding-bottom: 5rem;
 }
+
+td a { 
+    display: block;
+    text-decoration: none !important;
+}
