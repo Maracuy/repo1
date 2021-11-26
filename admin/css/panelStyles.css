@@ -466,7 +466,7 @@
 }
 
 .separadorContenidoFichaTituloRIS p{
-    color: rgba(0,0,0,.8);
+    color: rgba(0,0,0,.7);
     padding: 0;
     margin: 0;
     font-size: 20px;
@@ -485,7 +485,7 @@
     content: "";
     width: 100%;
     height: 1px;
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,.3);
 }
 
 .bloqueContenidoSectionFichaRIS{
@@ -498,4 +498,254 @@
 /*
 .contenidoFichaTituloContenedorRIS{
     background: sienna;
+}
+
+.contenidoFichaSolicitudRIS{
+    background: coral;
+}
+
+.containerFichasSolicitudRIS{
+    background: darkkhaki;
+}
+
+.fichaSinElementosMsgRIS{
+    background: purple;
 }*/
+
+.contenedorExpandibleElementosFRIS{
+    width: 100%;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.fichaSinElementosMsgRIS{
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fichaSinElementosMsgRIS p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: rgba(0,0,0,.6);
+}
+
+.contenedorFichasArchivosElementosRIS{
+    width: 100%;
+    min-width: 400px;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+/* etiquetas de pdf e img */
+
+
+
+.fichaArchivoOnGridRIS{
+    width: 90%;
+ /*   padding: 10px;*/
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.3);
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: 1fr;
+    cursor: pointer;
+}
+
+.fichaArchivoOnGridRIS:hover{
+    background: rgba(0,0,0,.2);
+}
+
+.fichaArchivoOnGridRIS p{
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,.8);
+    font-size: 16px;
+}
+
+
+@media only screen and (min-width:1700px) {
+    .contenedorFichasArchivosElementosRIS{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width:1000px) {
+    .contenedorFichasArchivosElementosRIS{
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+}
+
+@media only screen and (max-width:650px) {
+    .contenedorFichasArchivosElementosRIS{
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+.etiquetaFichaArchivoTipoRIS{
+    width: 50px;
+    height: 18px;
+    position: relative;
+    left: -10px;
+    top: -10px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: rgba(255,255,255,.9);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.etiquetaFichaArchivoTipoRISPDF{
+    background: #BF2828;
+}
+
+.etiquetaFichaArchivoTipoRISIMG{
+    background: #287FBF;
+}
+
+.contenedorEtiquetasFichasArchivosRIS{
+    padding: 10px;
+}
+
+.contenedorEtiquetasFichasArchivosRIS:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.etiquetaArchivoSEenRIS{
+    outline: none;
+    text-decoration: none;
+}
+
+.contenedorExpandibleElementosFRISNTV{
+    display: none;
+}
+
+.contenedorFichasSubirArchivoNuevoRIS{
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenedorContenidoFichaSubirArchivosRIS{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contenedorBotonesSubirArchivoRIS{
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.botonSubirArchivoRIS{
+    padding: 5px 10px;
+    background: #287FBF;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+    color: rgba(255,255,255,.8);
+}
+
+.botonSubirArchivoRIS:first-child{
+    margin-right: 5px;
+}
+
+.botonSubirArchivoRIS:last-child{
+    margin-left: 5px;
+}
+
+.contenedorBotonesSubirArchivoRIS:last-child > .botonSubirArchivoRIS:first-child{
+    background: #6F1A1A;
+}
+
+.contenedorBotonesSubirArchivoRIS:last-child > .botonSubirArchivoRIS:last-child{
+    background: #206F1A;
+}
+
+.OcultarSeccionSubirArchivos{
+    display: none;
+}
+
+.labelCambiaEstadoSubirArchivosRIS{
+    padding: 14px 40px;
+    border-radius: 9px;
+    border: 1px solid rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: rgba(0,0,0,.8);
+    cursor: pointer;
+}
+
+.contenedorMensajeErrorSubirArchivos{
+    width: 100%;
+    padding: 5px 10px;
+    background: rgba(236, 56, 56, .9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.8);
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.contenedorMensajeErrorSubirArchivos p{
+    margin: 0;
+    padding: 0;
+}
+
+.contenedorArchivosParaFormularioRIS{
+    width: 100%;
+}
+
+.contenedorAsignarNombreParaFormularioRIS{
+    width: 100%;
+}
+
+.fichaTituloAsirgnarParaFormularioRIS{
+    width: 100%;
+    padding: 0 5px 8px 5px;
+    font-size: 18px;
+    color: rgba(0,0,0,.8);
+    font-weight: bold;
+}
+
+.fichaTituloAsirgnarParaFormularioRIS p{
+    margin: 0;
+    padding: 0;
+}
+
+.inputTextAsirgnarParaFormularioRIS{
+    width: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,.5);
+}
