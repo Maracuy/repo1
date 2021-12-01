@@ -749,3 +749,93 @@
     text-align: left;
     border-bottom: 1px solid rgba(0,0,0,.5);
 }
+
+/* estilo del mensaje de error al cargar en el servidor */
+
+.contenedorMensajeDeErrorRespuestaRIS{
+
+    width: 100%;
+    padding: 7px;
+    background: rgba(236, 56, 56, .9);
+    margin-top: 5px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: rgba(255,255,255,.8);
+
+}
+
+.contenedorMensajeDeErrorRespuestaRIS p{
+    margin: 0;
+    padding: 0;
+}
+
+.OcultarSeccionMensajeError{
+    display: none;
+}
+
+.bannerVentanaModalGenericaRIS{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botonCerrarModalGenericaRIS{
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    right: 35px;
+    top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.botonCerrarModalGenericaRIS::before{
+    content: "";
+    width: 4px;
+    height: 35px;
+    border-radius: 5px;
+    background: white;
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.botonCerrarModalGenericaRIS::after{
+    content: "";
+    width: 4px;
+    height: 35px;
+    border-radius: 5px;
+    background: white;
+    transform: rotate(-45deg);
+    position: absolute;
+}
+
+.contenedorMensajeBannerGenericoRIS{
+    padding: 15px 25px;
+    max-width: 450px;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.contenedorMensajeBannerGenericoRIS p{
+    padding: 0;
+    margin: 0;
+    color: rgba(0,0,0,.8);
+    font-size: 17px;
+}
+
+.ocultarVentanaModalGenerica{
+    display: none;
+}

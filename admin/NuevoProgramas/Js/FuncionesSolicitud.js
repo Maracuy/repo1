@@ -3,43 +3,42 @@ function expandirInformacionDeSolicitud(tituloBloque){
     let bloque = tituloBloque.nextSibling;
     bloque.classList.toggle('contenedorExpandibleElementosFRISNTV');
 
-    // Reset a funcion "Subir Archivo" [revisar bug al tener 2 o mas secciones]
-    // bug: Uncaught TypeError: Cannot read properties of null (reading 'nextSibling')
+    if(tituloBloque.classList.contains('claseEditableFormularioRIS')){
 
-    let contenedorEdicion = bloque.firstChild.nextSibling.nextSibling.firstChild.firstChild;
+        let contenedorEdicion = bloque.firstChild.nextSibling.nextSibling.firstChild.firstChild;
 
-    if(!contenedorEdicion.classList.contains('OcultarSeccionSubirArchivos')){
+        if(!contenedorEdicion.classList.contains('OcultarSeccionSubirArchivos')){
 
-        let contenedorInputText = contenedorEdicion,
-            contenedorInputFile = contenedorEdicion.nextSibling,
-            contenedorBotones = contenedorInputFile.nextSibling,
-            contenedorBotonSubir = contenedorBotones.firstChild,
-            contenedorBotonGuardar = contenedorBotonSubir.nextSibling;
+            let contenedorInputText = contenedorEdicion,
+                contenedorInputFile = contenedorEdicion.nextSibling,
+                contenedorBotones = contenedorInputFile.nextSibling,
+                contenedorBotonSubir = contenedorBotones.firstChild,
+                contenedorBotonGuardar = contenedorBotonSubir.nextSibling;
 
-        let inputFile = document.getElementById("SubirArchivoClick");
-        let spanText = contenedorInputFile.firstChild.firstChild.nextSibling.firstChild,
-            inputText = contenedorInputFile.previousSibling.firstChild.firstChild.nextSibling.firstChild;
+            let inputFile = document.getElementById("SubirArchivoClick");
+            let spanText = contenedorInputFile.firstChild.firstChild.nextSibling.firstChild,
+                inputText = contenedorInputFile.previousSibling.firstChild.firstChild.nextSibling.firstChild;
 
-        contenedorInputText.classList.toggle('OcultarSeccionSubirArchivos');
-        contenedorInputFile.classList.toggle('OcultarSeccionSubirArchivos');
-        contenedorBotonSubir.classList.toggle('OcultarSeccionSubirArchivos');
-        contenedorBotonGuardar.classList.toggle('OcultarSeccionSubirArchivos');
+            contenedorInputText.classList.toggle('OcultarSeccionSubirArchivos');
+            contenedorInputFile.classList.toggle('OcultarSeccionSubirArchivos');
+            contenedorBotonSubir.classList.toggle('OcultarSeccionSubirArchivos');
+            contenedorBotonGuardar.classList.toggle('OcultarSeccionSubirArchivos');
 
-        inputFile.value = '';
-        inputText.value = '';
-        spanText.innerHTML = "Sin Archivo";
+            inputFile.value = '';
+            inputText.value = '';
+            spanText.innerHTML = "Sin Archivo";
 
+            let contenedorErrorBanner = document.getElementById("contenedorMensajeDeErrorRespuestaRIS");
+
+            if(!contenedorErrorBanner.classList.contains('OcultarSeccionMensajeError')){
+                contenedorErrorBanner.classList.toggle('OcultarSeccionMensajeError');
+            }
+
+        }
     }
-
-    // Continuacion de codigo
-
-
-
-
-
 }
 
-// Boton Subir Archivo
+// Boton (Input) subir archivo
 const inputCambio = document.getElementById("SubirArchivoClick");
 
 inputCambio.addEventListener('change', () => {
@@ -71,7 +70,6 @@ inputCambio.addEventListener('change', () => {
 
         }else{
 
-            // Inicio de codigo
             let pesoArchivo = (file.size / 1048576);
             const pesoMaximo = 5;
 
@@ -111,7 +109,6 @@ inputCambio.addEventListener('change', () => {
     contenedorBotonesGuardar.classList.toggle('OcultarSeccionSubirArchivos');
     contenedorInputFile.classList.toggle('OcultarSeccionSubirArchivos');
     contenedorInputTitulo.classList.toggle('OcultarSeccionSubirArchivos');
-
  }
 
  function reducirInputFile(boton){
@@ -133,4 +130,90 @@ inputCambio.addEventListener('change', () => {
     inputText.value = '';
     spanInputFile.innerHTML = "Sin Archivo";
 
+
+    let contenedorErrorBanner = document.getElementById("contenedorMensajeDeErrorRespuestaRIS");
+
+    if(!contenedorErrorBanner.classList.contains('OcultarSeccionMensajeError')){
+        contenedorErrorBanner.classList.toggle('OcultarSeccionMensajeError');
+    }
+
+    
+
+
+
  }
+
+ function ocultarVentanaModal(boton){
+    boton.parentNode.classList.toggle('ocultarVentanaModalGenerica');
+    boton.nextSibling.firstChild.innerHTML = "Mensaje";
+ }
+
+// Subida de archivos por medio de AJAX/JQuery
+ $(function(){
+    $("#formularioSubirArchivoFichaRIS2").on("submit", function(e){
+        e.preventDefault();
+        var f = $(this);
+        var formData = new FormData(document.getElementById("formularioSubirArchivoFichaRIS2"));
+        let campoTitulo = document.getElementById("campoTituloSubirArchivoFichaRIS2").value,
+            campoArchivo = document.getElementById("SubirArchivoClick").value;
+        let contenedorError = document.getElementById("contenedorMensajeDeErrorRespuestaRIS");
+
+        if(campoTitulo == "" || campoArchivo == ""){
+            // Activar mensaje de error
+            if(contenedorError.classList.contains('OcultarSeccionMensajeError')){
+                contenedorError.classList.toggle('OcultarSeccionMensajeError');
+                contenedorError.firstChild.innerHTML = "Complete todos los campos antes de guardar";
+            }else{
+                contenedorError.firstChild.innerHTML = "Complete todos los campos antes de guardar";
+            }
+        }else{
+            // Enviar datos
+            // Eliminar banner de error si existe
+            if(!contenedorError.classList.contains('OcultarSeccionMensajeError')){
+                contenedorError.classList.toggle('OcultarSeccionMensajeError');
+            }
+
+            $.ajax({
+                url: "NuevoProgramas/Externo/subirArchivo.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            }).done(function(res){
+
+                    // Reseteo de formulario
+                    let idInicialIndice = document.getElementById("campoTituloSubirArchivoFichaRIS2"),
+                        inputFileArchivo = document.getElementById("SubirArchivoClick");
+
+                    let contenedorTitulo = idInicialIndice.parentNode.previousSibling.parentNode.parentNode,
+                        contenedorArchivo = contenedorTitulo.nextSibling,
+                        contenedorBotones = contenedorArchivo.nextSibling,
+                        contenedorBotonesAccionSubir = contenedorBotones.firstChild,
+                        contenedorBotonesAccionGuardar = contenedorBotonesAccionSubir.nextSibling;
+
+                    contenedorTitulo.classList.toggle('OcultarSeccionSubirArchivos');
+                    contenedorArchivo.classList.toggle('OcultarSeccionSubirArchivos');
+                    contenedorBotonesAccionSubir.classList.toggle('OcultarSeccionSubirArchivos');
+                    contenedorBotonesAccionGuardar.classList.toggle('OcultarSeccionSubirArchivos');
+
+                    idInicialIndice.value = '';
+                    inputFileArchivo.value = '';
+                    inputFileArchivo.nextSibling.firstChild.innerHTML = "Sin Archivo";
+
+                    // Control de la ventana modal
+                    let ventanaModalGenerica = document.getElementById("bannerVentanaModalGenericaRIS");
+                    ventanaModalGenerica.classList.toggle('ocultarVentanaModalGenerica');
+
+                    if(res === ""){
+                        ventanaModalGenerica.firstChild.nextSibling.firstChild.innerHTML = "El archivo se subió correctamente";
+                    }else{
+                        ventanaModalGenerica.firstChild.nextSibling.firstChild.innerHTML = res; 
+                    }
+            });
+        }
+    });
+});
+
+// Continuacion

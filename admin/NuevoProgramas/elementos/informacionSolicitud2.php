@@ -12,7 +12,7 @@
         <!-- Seccion de solicitud -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
-            <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
+            <div class="contenidoFichaTituloContenedorRIS claseEditableFormularioRIS" onclick="expandirInformacionDeSolicitud(this);">
                 <div class="separadorContenidoFichaTituloRIS">
                     <p>Archivos</p>
                 </div>
@@ -64,7 +64,7 @@
 
                 <!-- Contenedor de formulario para subir archivos -->
                 <div class="contenedorFichasSubirArchivoNuevoRIS">
-                    <form enctype="multipart/form-data">
+                    <form enctype="multipart/form-data" id="formularioSubirArchivoFichaRIS2" method="post" action="NuevoProgramas/Externo/subirArchivo.php">
                         <!-- Contenedor asignar nombre -->
                         <div class="contenedorAsignarNombreParaFormularioRIS OcultarSeccionSubirArchivos">
                             <div class="contenedorContenidoFichaSubirArchivosRIS">
@@ -74,7 +74,7 @@
                                     </p>
                                 </div>
                                 <div class="fichaTituloAsirgnarParaFormularioRIS">
-                                    <input type="text" class="inputTextAsirgnarParaFormularioRIS" placeholder="Título">
+                                    <input type="text" id="campoTituloSubirArchivoFichaRIS2" class="inputTextAsirgnarParaFormularioRIS" placeholder="Título" name="campoNameSubirRIS1">
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <div class="contenedorArchivosParaFormularioRIS OcultarSeccionSubirArchivos">
                             <!-- Boton Subir Archivo - Mostrar nombre -->
                             <div class="contenedorContenidoFichaSubirArchivosRIS">   
-                                <input type="file"  class="OcultarSeccionSubirArchivos" id="SubirArchivoClick">
+                                <input type="file"  class="OcultarSeccionSubirArchivos" id="SubirArchivoClick" name="campoNameSubirRIS2">
                                 <label class="labelCambiaEstadoSubirArchivosRIS" for="SubirArchivoClick">
                                     <span>
                                         Sin Archivo
@@ -110,25 +110,22 @@
                             <!-- Botones que interactuan con el formulario -->
                             <div class="contenedorBotonesSubirArchivoRIS OcultarSeccionSubirArchivos">
                                 <input type="button" class="botonSubirArchivoRIS" value="Cancelar" onclick="reducirInputFile(this);">
-                                <input type="button" class="botonSubirArchivoRIS" value="Subir">
+                                <input type="submit" class="botonSubirArchivoRIS" value="Subir">
                             </div>
-                        </div>  
+                        </div>
+
+                        <!-- Mensaje de error en respuesta del servidor -->
+                        <div class="contenedorMensajeDeErrorRespuestaRIS OcultarSeccionMensajeError" id="contenedorMensajeDeErrorRespuestaRIS">
+                            <p>
+                                Mensaje de error
+                            </p>
+                        </div>
                     </form>
                 </div>
 
             <!-- Etiquetas de cierre para seccion de la solicitud -->
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -167,9 +164,32 @@
 
 
 
+
+
+
+
+
+
+
     <!-- Etiquetas de cierre para el contenido de la solicitud -->
     </div>
 </div>
+
+
+
+<!-- Ventana modal generica -->
+<div class="bannerVentanaModalGenericaRIS ocultarVentanaModalGenerica" id="bannerVentanaModalGenericaRIS">
+    <span class="botonCerrarModalGenericaRIS" onclick="ocultarVentanaModal(this);">
+    </span>
+    <div class="contenedorMensajeBannerGenericoRIS">
+        <p>
+            Mensaje
+        </p>
+    </div>
+</div>
+
+
+
 
 <script src="NuevoProgramas/Js/FuncionesSolicitud.js">
 </script>
