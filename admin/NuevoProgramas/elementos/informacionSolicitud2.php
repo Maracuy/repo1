@@ -22,15 +22,17 @@
             <!-- Contenedor expandible al dar click -->
             <div class="contenedorExpandibleElementosFRIS">
                 <!-- Contenedor vacio cuando NO existen archivos -->
+
+                <!--
                 <div class="fichaSinElementosMsgRIS">
                     <p>
                         Sin Archivos
                     </p>
-                </div>
+                </div> -->
                 <!-- Contenedor de fichas cuando existen archivos -->
-                <div class="contenedorFichasArchivosElementosRIS">
+           <!--     <div class="contenedorFichasArchivosElementosRIS">  -->
                     <!-- Tipo de contenedor para IMG -->
-                    <a class="etiquetaArchivoSEenRIS" download="#">
+                  <!--    <a class="etiquetaArchivoSEenRIS" download="#">
                         <div class="fichaArchivoOnGridRIS">
                             <div class="contenedorEtiquetasFichasArchivosRIS">
                                 <span class="etiquetaFichaArchivoTipoRIS etiquetaFichaArchivoTipoRISIMG">
@@ -43,10 +45,10 @@
                                 </p>
                             </div>
                         </div>
-                    </a>
+                    </a>-->
 
                     <!-- Tipo de contenedor para PDF -->
-                    <a class="etiquetaArchivoSEenRIS" download="#">
+                 <!--     <a class="etiquetaArchivoSEenRIS" download="#">
                         <div class="fichaArchivoOnGridRIS">
                             <div class="contenedorEtiquetasFichasArchivosRIS">
                                 <span class="etiquetaFichaArchivoTipoRIS etiquetaFichaArchivoTipoRISPDF">
@@ -60,11 +62,88 @@
                             </div>
                         </div>
                     </a>
+
+                    
                 </div>
+           -->
+
+
+
+                <!-- contenedor de las fichas -->
+                <div id="contenedorFichaDocumentosSg">
+
+                
+
+
+                </div>
+
+
+
+
+
+            <script>
+
+
+            // cargar las fichas de documentos
+            <?php
+            $idUsuario = strip_tags(htmlspecialchars($_GET['ids']));
+            ?>
+
+            function tiempoReal(){
+                var tabla = $.ajax({
+                    url: 'NuevoProgramas/Externo/consultarDocumentos.php?ids=' + <?=$idUsuario?>,
+                    dataType: 'text'
+                }).done(function(res){
+
+                    
+                    let contenedor = document.getElementById("contenedorFichaDocumentosSg");
+                    
+                    if(res == ""){
+                        contenedor.innerHTML = '<div class=\"fichaSinElementosMsgRIS\"><p>Sin Archivos</p></div>';
+                    }else{
+
+
+                        contenedor.innerHTML = res;
+
+
+                    }
+
+
+
+
+
+                });
+
+               // 
+
+            }
+
+           tiempoReal();
+
+         //   setInterval(tiempoReal, 3000);
+
+
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <!-- Contenedor de formulario para subir archivos -->
                 <div class="contenedorFichasSubirArchivoNuevoRIS">
                     <form enctype="multipart/form-data" id="formularioSubirArchivoFichaRIS2" method="post" action="NuevoProgramas/Externo/subirArchivo.php">
+
+                        <!-- Contenedor con id -->
+                        <input type="text" value="<?=$_GET['ids'];?>" name="campoNameSubirRIS0" hidden>
+
                         <!-- Contenedor asignar nombre -->
                         <div class="contenedorAsignarNombreParaFormularioRIS OcultarSeccionSubirArchivos">
                             <div class="contenedorContenidoFichaSubirArchivosRIS">
