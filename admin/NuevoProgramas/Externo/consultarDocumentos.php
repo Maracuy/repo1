@@ -11,7 +11,6 @@ try{
     $resultado->bindValue(":idSolicitud", $idSolicitud);
     $resultado->execute();
     $contenidoDocumentosEstructurado = "<div class=\"contenedorFichasArchivosElementosRIS\">";
-   // $rutaDirectorio = $_SERVER['PHP_SELF'] . "/../../documentos/";
     $rutaDirectorio = "NuevoProgramas/documentos/";
     $registrosDocumentosTotales = $resultado->rowCount();
 
@@ -19,22 +18,9 @@ try{
         while($registrosDocumentos = $resultado->fetch(PDO::FETCH_ASSOC)){
             $tipo = strtolower($registrosDocumentos['EXTENSION']);
             if($tipo == "jpg" || $tipo == "jpeg" || $tipo == "gif" || $tipo == "png"){
-
-
-
                 $contenidoDocumentosEstructurado .= "<a class=\"etiquetaArchivoSEenRIS\" href=\"" . $rutaDirectorio . $registrosDocumentos['NOM_EN_SERVIDOR'] . "\" download=\"" . $registrosDocumentos['NOM_EN_PANTALLA'] . "." . $tipo . "\"><div class=\"fichaArchivoOnGridRIS\"><div class=\"contenedorEtiquetasFichasArchivosRIS\"><span class=\"etiquetaFichaArchivoTipoRIS etiquetaFichaArchivoTipoRISIMG\">img</span></div><div class=\"contenedorEtiquetasFichasArchivosRIS\"><p>" . $registrosDocumentos['NOM_EN_PANTALLA'] . "</p></div></div></a>";
-
-
-
-
-
             }else{
-
                 $contenidoDocumentosEstructurado .= "<a class=\"etiquetaArchivoSEenRIS\" href=\"" . $rutaDirectorio . $registrosDocumentos['NOM_EN_SERVIDOR'] . "\" download=\"" . $registrosDocumentos['NOM_EN_PANTALLA'] . "." . $tipo . "\"><div class=\"fichaArchivoOnGridRIS\"><div class=\"contenedorEtiquetasFichasArchivosRIS\"><span class=\"etiquetaFichaArchivoTipoRIS etiquetaFichaArchivoTipoRISPDF\">pdf</span></div><div class=\"contenedorEtiquetasFichasArchivosRIS\"><p>" . $registrosDocumentos['NOM_EN_PANTALLA'] . "</p></div></div></a>";
-
-
-
-
             }
         }
         $contenidoDocumentosEstructurado .= "</div>";

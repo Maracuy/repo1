@@ -1,14 +1,11 @@
-// Funciones de la solicitud
+// Funcion para "seccion de solicitud"
 function expandirInformacionDeSolicitud(tituloBloque){
     let bloque = tituloBloque.nextSibling;
     bloque.classList.toggle('contenedorExpandibleElementosFRISNTV');
 
     if(tituloBloque.classList.contains('claseEditableFormularioRIS')){
-
-        let contenedorEdicion = bloque.firstChild.nextSibling.nextSibling.firstChild.firstChild;
-
-        if(!contenedorEdicion.classList.contains('OcultarSeccionSubirArchivos')){
-
+       let contenedorEdicion = bloque.firstChild.nextSibling.nextSibling.firstChild.firstChild.nextSibling;
+       if(!contenedorEdicion.classList.contains('OcultarSeccionSubirArchivos')){
             let contenedorInputText = contenedorEdicion,
                 contenedorInputFile = contenedorEdicion.nextSibling,
                 contenedorBotones = contenedorInputFile.nextSibling,
@@ -16,31 +13,32 @@ function expandirInformacionDeSolicitud(tituloBloque){
                 contenedorBotonGuardar = contenedorBotonSubir.nextSibling;
 
             let inputFile = document.getElementById("SubirArchivoClick");
-            let spanText = contenedorInputFile.firstChild.firstChild.nextSibling.firstChild,
-                inputText = contenedorInputFile.previousSibling.firstChild.firstChild.nextSibling.firstChild;
+            let spanText = inputFile.nextSibling.firstChild,
+                inputText = inputFile.parentNode.parentNode.previousSibling.firstChild.firstChild.nextSibling.firstChild;
 
             contenedorInputText.classList.toggle('OcultarSeccionSubirArchivos');
             contenedorInputFile.classList.toggle('OcultarSeccionSubirArchivos');
             contenedorBotonSubir.classList.toggle('OcultarSeccionSubirArchivos');
             contenedorBotonGuardar.classList.toggle('OcultarSeccionSubirArchivos');
-
             inputFile.value = '';
             inputText.value = '';
             spanText.innerHTML = "Sin Archivo";
 
             let contenedorErrorBanner = document.getElementById("contenedorMensajeDeErrorRespuestaRIS");
-
             if(!contenedorErrorBanner.classList.contains('OcultarSeccionMensajeError')){
                 contenedorErrorBanner.classList.toggle('OcultarSeccionMensajeError');
             }
 
+            let mensajeErrorPrimero = document.getElementById("contenedorMensajeError");
+            if(!mensajeErrorPrimero.classList.contains('OcultarSeccionSubirArchivos')){
+                mensajeErrorPrimero.classList.toggle('OcultarSeccionSubirArchivos');
+            }
         }
     }
 }
 
 // Boton (Input) subir archivo
 const inputCambio = document.getElementById("SubirArchivoClick");
-
 inputCambio.addEventListener('change', () => {
     let etiquetaSpan = inputCambio.nextSibling.firstChild;
     let file = inputCambio.files[0];
@@ -99,7 +97,8 @@ inputCambio.addEventListener('change', () => {
     }
  });
 
- function expandirInputFile(boton){
+ // Funcion del boton "subir archivo" (Activar)
+function expandirInputFile(boton){
     let contenedorBotonesSubir = boton.parentNode,
         contenedorBotonesGuardar = contenedorBotonesSubir.nextSibling,
         contenedorInputFile = boton.parentNode.parentNode.previousSibling,
@@ -109,9 +108,10 @@ inputCambio.addEventListener('change', () => {
     contenedorBotonesGuardar.classList.toggle('OcultarSeccionSubirArchivos');
     contenedorInputFile.classList.toggle('OcultarSeccionSubirArchivos');
     contenedorInputTitulo.classList.toggle('OcultarSeccionSubirArchivos');
- }
+}
 
- function reducirInputFile(boton){
+// Funcion del boton "subir archivo" (Cancelar)
+function reducirInputFile(boton){
 
     let contenedorBotonesGuardar = boton.parentNode,
         contenedorBotonesSubir = contenedorBotonesGuardar.previousSibling,
@@ -130,19 +130,18 @@ inputCambio.addEventListener('change', () => {
     inputText.value = '';
     spanInputFile.innerHTML = "Sin Archivo";
 
-
     let contenedorErrorBanner = document.getElementById("contenedorMensajeDeErrorRespuestaRIS");
-
     if(!contenedorErrorBanner.classList.contains('OcultarSeccionMensajeError')){
         contenedorErrorBanner.classList.toggle('OcultarSeccionMensajeError');
     }
 
-    
+    let mensajeErrorPrimero = document.getElementById("contenedorMensajeError");
+    if(!mensajeErrorPrimero.classList.contains('OcultarSeccionSubirArchivos')){
+        mensajeErrorPrimero.classList.toggle('OcultarSeccionSubirArchivos');
+    }
+}
 
-
-
- }
-
+ // Ocultar ventana modal
  function ocultarVentanaModal(boton){
     boton.parentNode.classList.toggle('ocultarVentanaModalGenerica');
     boton.nextSibling.firstChild.innerHTML = "Mensaje";
@@ -218,7 +217,4 @@ inputCambio.addEventListener('change', () => {
 
 // Continuacion
 
-
-// REPARAR RUTAS RELATIVAS EN VARIABLES JS, UN NUEVO CONTENEDOR FUE AÑADIDO Y CAUSO ERRORES
-// AGREGAR VALIDACION PHP PARA LOS ARCHIVOS Y EN CASO DE FALLAR ALGUNA, NO SUBIR ARCHIVO (ACTUALMENTE SI FALLA ALGO, CONTINUA)
-// DESCOMENTAR FUNCION SETINTERVAL PARA RECIBIR DATOS SIN RECARGAR PAGINA (COMENTADA PARA EVITAR RESETEO DE CODIGO AL EDITAR)
+// Optimizar llamada Ajax [la que esta en HTML] - si la pestaña se encuentra cerrada el ciclo debera ser pausado y unicamente si se abre podra ser reanudado
