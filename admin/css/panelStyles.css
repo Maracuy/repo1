@@ -145,7 +145,8 @@
 
 .ContenedorTablaGeneral{
     width: 95%;
-    margin: 30px 0 0 2.5%;
+    margin: 30px 0 0 0;
+   /* margin: 30px 0 0 2.5%;*/
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -838,4 +839,12 @@
 
 .ocultarVentanaModalGenerica{
     display: none;
+}
+
+#contenedorTabla-BotonesGRL{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

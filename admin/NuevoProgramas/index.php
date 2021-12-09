@@ -15,9 +15,17 @@ if(isset($_GET['ids'])){
 }else{
     // Filtros para tabla
     include_once('elementos/filtrosTabla.php');
-    
-    // Tabla paginada
-    include_once('elementos/tablaRegistros.php');
+
+    // Tabla paginada [Nueva version]
+    include_once('elementos/tablaSolicitudes.php');
 }
+
+
+
+
+
+
+
+
 
 ?>
