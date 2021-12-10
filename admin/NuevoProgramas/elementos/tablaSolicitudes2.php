@@ -141,7 +141,7 @@ try{
     <!-- Corresponde a una fila de la tabla [Este es el titulo de las columnas]-->
     <div class="ContenedorFilasContenido elementoPrincipalTablaTitulo">
         <div class="ItemFilaC">
-            ID
+            Folio
         </div>
         <div class="ItemFilaC">
             Propiedades

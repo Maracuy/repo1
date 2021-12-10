@@ -145,7 +145,7 @@
 
 .ContenedorTablaGeneral{
     width: 95%;
-    margin: 30px 0 0 0;
+    margin: 0;
    /* margin: 30px 0 0 2.5%;*/
     display: flex;
     align-items: flex-start;
@@ -547,8 +547,6 @@
 
 /* etiquetas de pdf e img */
 
-
-
 .fichaArchivoOnGridRIS{
     width: 90%;
  /*   padding: 10px;*/
@@ -574,7 +572,6 @@
     color: rgba(0,0,0,.8);
     font-size: 16px;
 }
-
 
 @media only screen and (min-width:1700px) {
     .contenedorFichasArchivosElementosRIS{
@@ -847,4 +844,79 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+/* boton automatico */
+
+.contenedorBotonAutomaticoTablaRIS{
+    width: 100%;
+    padding: 10px 25px;
+    margin: 20px 0 10px 0;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    grid-template-rows: 1fr;
+}
+
+.contenedorFichasBotonAutomaticoRIS{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 8px;
+}
+
+.contenedorFichasBotonAutomaticoRIS:first-child{
+    justify-content: flex-end;
+}
+
+#checkboxBotonTablaAutomaticaRIS{
+    display: none;
+}
+
+.contenedorFichasBotonAutomaticoRIS p{
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,0.7);
+    font-size: 16px;
+}
+
+.labelBotonTablaAutomaticaRIS{
+    width: 30px;
+    height: 17px;
+    border-radius: 20px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,.1);
+    background: rgba(124,25,24,.4);
+    border: 1px solid transparent;
+    cursor: pointer;
+    -webkit-transition: background .1s linear;
+    -moz-transition: background .1s linear;
+    -o-transition: background .1s linear;
+    transition: background .1s linear;
+}
+
+.labelBotonTablaAutomaticaRIS::before{
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(255,255,255,1);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 55%);
+    -webkit-transition: transform .1s linear;
+    -moz-transition: transform .1s linear;
+    -o-transition: transform .1s linear;
+    transition: transform .1s linear;
+}
+
+#checkboxBotonTablaAutomaticaRIS:checked + .labelBotonTablaAutomaticaRIS::before{
+    transform: translateX(14px);
+}
+
+#checkboxBotonTablaAutomaticaRIS:checked + .labelBotonTablaAutomaticaRIS{
+    background: rgba(42,124, 25,0.4);
 }

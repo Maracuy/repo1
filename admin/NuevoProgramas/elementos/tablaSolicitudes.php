@@ -52,12 +52,26 @@ $link = $link . $extensionConsulta;
 
 ?>
 
+<!-- Boton "Actualizar tabla automaticamente" -->
+<div class="contenedorBotonAutomaticoTablaRIS">
+    <div class="contenedorFichasBotonAutomaticoRIS">
+        <p>
+            Actualizar automáticamente
+        </p>
+    </div>
+    <div class="contenedorFichasBotonAutomaticoRIS">
+        <input type="checkbox" id="checkboxBotonTablaAutomaticaRIS" checked>
+        <label for="checkboxBotonTablaAutomaticaRIS" class="labelBotonTablaAutomaticaRIS">
+        </label>
+    </div>
+</div>
+
 <!-- Contenedor para agregar la tabla y sus botones -->
 <div id="contenedorTabla-BotonesGRL">
 </div>
 
 <script>
-    function tiempoReal(){
+    function tiempoReal2(){
         var link = '<?=$link?>';
         var tabla = $.ajax({
             url: link,
@@ -67,7 +81,34 @@ $link = $link . $extensionConsulta;
         });
     }
 
-    // Primera llamada al cargar la pagina, Actualizar cada 10 s despues
-    tiempoReal();
-    setInterval(tiempoReal, 10000);
+    // Recordar y cambiar el estado de switch al recargar pagina
+    var localChechobox = document.getElementById("checkboxBotonTablaAutomaticaRIS");
+
+    localChechobox.addEventListener('click', () => {
+        if (localChechobox.checked) {
+            localStorage.setItem('actualizacionTablaActivada', 'true');
+        } else {
+            localStorage.setItem('actualizacionTablaActivada', 'false');
+        }
+    });
+
+    if (localStorage.getItem('actualizacionTablaActivada') === 'true') {
+        localChechobox.checked = true;
+    } else {
+        localChechobox.checked = false;
+    }
+
+    // Leer estado del switch y actualizar tabla automaticamente (cada 8s)
+    var checkbox = document.getElementById("checkboxBotonTablaAutomaticaRIS");
+    checkbox.addEventListener("change", agregarContador, false);
+
+    tiempoReal2();
+    agregarContador();
+
+    function agregarContador(){
+        var llamadaABase = setInterval(function(){
+            (!checkbox.checked) ? clearInterval(llamadaABase) : tiempoReal2();
+        }, 8000); 
+    }
+
 </script>
