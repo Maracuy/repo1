@@ -43,7 +43,7 @@ inputCambio.addEventListener('change', () => {
     let etiquetaSpan = inputCambio.nextSibling.firstChild;
     let file = inputCambio.files[0];
     let inputFile = document.getElementById("SubirArchivoClick");
-    const extensionesAprobadas = ["jpg", "jpeg", "gif", "png", "pdf", "docx", "xlsx", "pptx"];
+    const extensionesAprobadas = ["jpg", "jpeg", "gif", "png", "pdf", "docx", "xlsx", "pptx", "doc", "dot", "dotx", "docm", "dotm", "xls", "xlt", "xla", "xltx", "xlsm", "xltm", "xlam", "xlsb", "ppt", "pot", "pps", "ppa", "potx", "ppsx", "ppam", "pptm", "potm", "ppsm"];
 
     if(file){
 
@@ -69,7 +69,7 @@ inputCambio.addEventListener('change', () => {
         }else{
 
             let pesoArchivo = (file.size / 1048576);
-            const pesoMaximo = 5;
+            const pesoMaximo = 6;
 
             if(pesoArchivo > pesoMaximo){
 
