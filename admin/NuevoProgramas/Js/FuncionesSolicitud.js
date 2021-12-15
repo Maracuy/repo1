@@ -216,5 +216,3 @@ function reducirInputFile(boton){
 });
 
 // Continuacion
-
-// Optimizar llamada Ajax [la que esta en HTML] - si la pestaña se encuentra cerrada el ciclo debera ser pausado y unicamente si se abre podra ser reanudado

@@ -12,7 +12,7 @@
         <!-- Seccion de solicitud -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
-            <div class="contenidoFichaTituloContenedorRIS claseEditableFormularioRIS" onclick="expandirInformacionDeSolicitud(this);">
+           <div class="contenidoFichaTituloContenedorRIS claseEditableFormularioRIS" onclick="expandirInformacionDeSolicitud(this);generarDocumentos();">
                 <div class="separadorContenidoFichaTituloRIS">
                     <p>Archivos</p>
                 </div>
@@ -23,7 +23,6 @@
                 <!-- contenedor de las fichas -->
                 <div id="contenedorFichaDocumentosSg">
                 </div>
-
                 <!-- Llamada a los documentos -->
                 <script>
                     <?php
@@ -43,11 +42,18 @@
                             }
                         });
                     }
-                    // Primera llamada al cargar la pagina, ciclar despues
+                    // actualizacion de documentos cada 3s (pausar el ciclo si se encuentra cerrada la pestaña)
                     tiempoReal();
-                    setInterval(tiempoReal, 3000);
-                </script>
+                    generarDocumentos();
 
+                    var mostrarDocumentosAutomaticos = false;
+                    function generarDocumentos(){
+                        mostrarDocumentosAutomaticos ^= true;
+                        var llamadaABase = setInterval(function(){
+                            (mostrarDocumentosAutomaticos) ? clearInterval(llamadaABase) : tiempoReal();
+                        }, 3000); 
+                    }
+                </script>
                 <!-- Contenedor de formulario para subir archivos -->
                 <div class="contenedorFichasSubirArchivoNuevoRIS">
                     <form enctype="multipart/form-data" id="formularioSubirArchivoFichaRIS2" method="post" action="NuevoProgramas/Externo/subirArchivo.php">
@@ -113,7 +119,6 @@
 
 
 
-
         <!-- Seccion de solicitud [PARA RELLENAR] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
@@ -149,8 +154,6 @@
     </div>
 </div>
 
-
-
 <!-- Ventana modal generica -->
 <div class="bannerVentanaModalGenericaRIS ocultarVentanaModalGenerica" id="bannerVentanaModalGenericaRIS">
     <span class="botonCerrarModalGenericaRIS" onclick="ocultarVentanaModal(this);">
@@ -161,9 +164,6 @@
         </p>
     </div>
 </div>
-
-
-
 
 <script src="NuevoProgramas/Js/FuncionesSolicitud.js">
 </script>
