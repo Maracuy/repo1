@@ -215,4 +215,37 @@ function reducirInputFile(boton){
     });
 });
 
-// Continuacion
+// Mostrar botones de confirmacion
+function confirmarEliminacion(nota){
+
+    let contenedorBotones = nota.nextSibling;
+    nota.classList.toggle('ocultarContenedorNotasRIS');
+    contenedorBotones.classList.toggle('ocultarContenedorNotasRIS');
+
+}
+
+// Ocultar botones de confirmacion
+function cancelarEliminacion(boton){
+    let contenedorBotones = boton.parentNode.parentNode;
+    let botonActivador = contenedorBotones.previousSibling;
+
+    botonActivador.classList.toggle('ocultarContenedorNotasRIS');
+    contenedorBotones.classList.toggle('ocultarContenedorNotasRIS');
+}
+
+// enviar formulario para eliminar nota
+function eliminarNota(idNota, boton){
+    console.log("se eliminara la nota " + idNota + " y despues se actualizaran todas");
+    cancelarEliminacion(boton);
+}
+
+// Limpiar Nota
+function limpiarTextArea(){
+    let textArea = document.getElementById("textareaNotas");
+    textArea.value = "";
+}
+
+// subir nota a bdo
+function guardarNuevaNota(){
+    console.log("agregar nueva nota con ajax");
+}

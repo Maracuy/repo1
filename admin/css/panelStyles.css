@@ -920,3 +920,273 @@
 #checkboxBotonTablaAutomaticaRIS:checked + .labelBotonTablaAutomaticaRIS{
     background: rgba(42,124, 25,0.4);
 }
+
+/* Estilo panel de propiedades */
+
+.contenedorPanelPropiedadesDocumentoRIS{
+    width: 100%;
+    padding: 0 20px 15px 0;
+   /* background: red;*/
+  /*  margin-bottom: 15px;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contenedorPanelPropiedadesDocumentoRIS:last-child{
+    padding: 0 0 15px 20px;
+}
+
+.contenedorElementosFichasPropiedadesRIS{
+    width: 100%;
+    padding: 8px 5px 8px 10px;
+   /* background: green;*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.contenedorPanelPropiedadesDocumentoRIS:last-child .contenedorElementosFichasPropiedadesRIS{
+    justify-content: flex-start;
+    padding: 8px 10px 8px 5px;
+}
+
+.fichasElementosPropiedadesRIS{
+    padding: 0 5px;
+  /*  background: orange;*/
+}
+
+.fichasElementosPropiedadesRIS:first-child{
+    /*background: aqua;*/
+    padding: 0 10px 0 25px;
+}
+
+.fichasElementosPropiedadesRIS p{
+    padding: 0;
+    margin: 0;
+    color: #4F4F4F;
+    font-size: 15px;
+}
+
+.fichasElementosPropiedadesRIS:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switchCambiarEstadoPropiedadesRIS{
+    width: 30px;
+    height: 17px;
+    border-radius: 20px;
+    background: rgba(124,25,24,.4);
+    border: 1px solid transparent;
+    cursor: pointer;
+    position: relative;
+    margin: auto;
+    -webkit-transition: background .1s linear;
+    -moz-transition: background .1s linear;
+    -o-transition: background .1s linear;
+    transition: background .1s linear;
+}
+
+.switchCambiarEstadoPropiedadesRIS::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(255,255,255,1);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 55%);
+    -webkit-transition: transform .1s linear;
+    -moz-transition: transform .1s linear;
+    -o-transition: transform .1s linear;
+    transition: transform .1s linear;
+}
+
+.inputCheckboxPropiedades:checked + .switchCambiarEstadoPropiedadesRIS::before{
+    transform: translateX(14px);
+}
+
+.inputCheckboxPropiedades:checked + .switchCambiarEstadoPropiedadesRIS{
+    background: rgba(42,124, 25,0.4);
+}
+
+.contenedorFichasFlexGridRIS{
+    width: 100%;
+ /*   background: aqua;*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /*gap: 20px;*/
+   /* background: lightblue;*/
+}
+
+.contenedorPropiedadesNotasEditablesRIS{
+    width: 100%;
+    padding: 0 15px 10px 15px;
+   /* background: lightgreen;*/
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contenedorAgregarAnotacionFichaRIS{
+    width: 90%;
+    min-height: 50px;
+ /*   background: purple;*/
+}
+
+.inputTextGenericoNotasFichasEnRIS{
+    width: 100%;
+    min-height: 50px;
+    max-height: 100px;
+    background: transparent;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.2);
+    color: rgba(0,0,0,.8);
+    box-sizing: border-box;
+    padding: 5px 8px;
+}
+
+.formularioNotasRIS{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contenedorBotonesAgregarNuevaNotaRIS{
+    width: 90%;
+    padding: 0 0 10px 15px;
+   /* background: green;*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.botonGenericoAgregarNotaRIS{
+    padding: 5px 8px;
+    outline: none;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    background: #206F1A;
+    color: #f0f0f0;
+}
+
+.botonGenericoAgregarNotaRIS:first-child{
+    margin-right: 10px;
+    background: #6F1A1A;
+}
+
+.contenedorNotasDinamicasGeneradasRIS{
+    width: 100%;
+    min-width: 500px;
+    padding: 0 0 10px 0;
+  /*  background: red;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fichaNotaDinamicaGeneradaRIS{
+    width: 90%;
+    padding: 10px;
+  /*  background: green;*/
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 1fr 150px;
+}
+
+.contenedorConfirmarEliminacionNotaRIS{
+    width: 100%;
+    height: 100%;
+ /*   background: orange;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.contenedorBotonesConfirmarRIS{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  /*  background: purple;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contenedorBotonesConfirmarRIS p{
+    padding: 0;
+    margin: 0;
+    color: rgba(0,0,0,.7);
+    font-size: 16px;
+}
+
+.botonConfirmarAccionRIS{
+    padding: 5px;
+    color: rgba(255,255,255,1);
+    background: #6F1A1A;
+    text-align: center;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.botonConfirmarAccionRIS:last-child{
+    background: #206F1A;
+    padding: 5px 8px;
+}
+
+.contenedorBotonesConfirmarRIS > div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ocultarContenedorNotasRIS{
+    display: none;
+}
+
+.btnEliminarNotaIniciarConfirmacionRIS{
+    background: #6F1A1A;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 5px 8px;
+    color: rgba(255,255,255,1);
+}
+
+.contenedorNotaDinamicaTextoRIS{
+    width: 95%;
+    min-width: 200px;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.3);
+    padding: 5px;
+}
+
+.contenedorNotaDinamicaTextoRIS p{
+    font-size: 14px;
+    color: rgba(0,0,0,.7);
+    margin: 0;
+    padding: 0;
+}

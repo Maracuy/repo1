@@ -9,7 +9,7 @@
     <!-- Contenido de la solicitud -->
     <div class="contenidoFichaSolicitudRIS">
 
-        <!-- Seccion de solicitud -->
+        <!-- Seccion de solicitud [Documentos] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
            <div class="contenidoFichaTituloContenedorRIS claseEditableFormularioRIS" onclick="expandirInformacionDeSolicitud(this);generarDocumentos();">
@@ -43,8 +43,8 @@
                         });
                     }
                     // actualizacion de documentos cada 3s (pausar el ciclo si se encuentra cerrada la pestaña)
-                    tiempoReal();
-                    generarDocumentos();
+                //    tiempoReal();
+                 //   generarDocumentos();
 
                     var mostrarDocumentosAutomaticos = false;
                     function generarDocumentos(){
@@ -116,15 +116,92 @@
             </div>
         </div>
 
-
-
-
-        <!-- Seccion de solicitud [PARA RELLENAR] -->
+        <!-- Seccion de solicitud [Propiedades] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
             <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
                 <div class="separadorContenidoFichaTituloRIS">
-                    <p>relleno</p>
+                    <p>Propiedades</p>
+                </div>
+                <span class="lineaVisionContenedorFichaTituloRIS"></span>
+            </div>
+            <!-- Contenedor expandible al dar click -->
+            <div class="contenedorExpandibleElementosFRIS">
+
+
+                
+                <div class="contenedorFichasFlexGridRIS">
+                    <div class="contenedorPanelPropiedadesDocumentoRIS">
+                        <div class="contenedorElementosFichasPropiedadesRIS">
+                            <div class="fichasElementosPropiedadesRIS">
+                                <p>
+                                    Titulo de propiedad 1
+                                </p>
+                            </div>
+                            <div class="fichasElementosPropiedadesRIS">
+                                <input type="checkbox" id="checkboxPropiedades1" class="inputCheckboxPropiedades" hidden>
+                                <label for="checkboxPropiedades1" class="switchCambiarEstadoPropiedadesRIS"></label>
+                            </div>
+                        </div>
+                        <div class="contenedorElementosFichasPropiedadesRIS">
+                            <div class="fichasElementosPropiedadesRIS">
+                                <p>
+                                    Titulo de propiedad 2
+                                </p>
+                            </div>
+                            <div class="fichasElementosPropiedadesRIS">
+                                <input type="checkbox" id="checkboxPropiedades2" class="inputCheckboxPropiedades" hidden>
+                                <label for="checkboxPropiedades2" class="switchCambiarEstadoPropiedadesRIS"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contenedorPanelPropiedadesDocumentoRIS">
+                        <div class="contenedorElementosFichasPropiedadesRIS">
+                            <div class="fichasElementosPropiedadesRIS">
+                                <p>
+                                    Titulo de propiedad 3
+                                </p>
+                            </div>
+                            <div class="fichasElementosPropiedadesRIS">
+                                <input type="checkbox" id="checkboxPropiedades3" class="inputCheckboxPropiedades" hidden>
+                                <label for="checkboxPropiedades3" class="switchCambiarEstadoPropiedadesRIS"></label>
+                            </div>
+                        </div>
+                        <div class="contenedorElementosFichasPropiedadesRIS">
+                            <div class="fichasElementosPropiedadesRIS">
+                                <p>
+                                    Titulo de propiedad 4
+                                </p>
+                            </div>
+                            <div class="fichasElementosPropiedadesRIS">
+                                <input type="checkbox" id="checkboxPropiedades4" class="inputCheckboxPropiedades" hidden>
+                                <label for="checkboxPropiedades4" class="switchCambiarEstadoPropiedadesRIS"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            <!-- Etiquetas de cierre para seccion de la solicitud -->
+            </div>
+        </div>
+
+
+        
+
+
+
+
+
+
+        <!-- Seccion de solicitud [Anotaciones] -->
+        <div class="bloqueContenidoSectionFichaRIS">
+            <!-- Titulo de seccion -->
+            <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
+                <div class="separadorContenidoFichaTituloRIS">
+                    <p>Anotaciones</p>
                 </div>
                 <span class="lineaVisionContenedorFichaTituloRIS"></span>
             </div>
@@ -132,12 +209,63 @@
             <!-- Contenedor expandible al dar click -->
             <div class="contenedorExpandibleElementosFRIS">
                 
-                texto de relleno para verificar
+
+                <!-- contenedor de notas -->
+                <div class="contenedorNotasDinamicasGeneradasRIS">
+                    <!-- Nota -->
+                    <div class="fichaNotaDinamicaGeneradaRIS">
+                        <div class="contenedorNotaDinamicaTextoRIS">
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in purus vitae lectus tempus sagittis vel ac est. Integer eget ipsum lorem. Etiam ullamcorper mauris facilisis enim porta, ut maximus enim interdum. Curabitur pretium id elit sed maximus. Morbi rutrum, magna et venenatis bibendum, nisl nisl accumsan ligula, vel iaculis libero felis ac diam. Mauris interdum metus pretium, posuere est non, feugiat arcu. Donec rhoncus, nunc consequat pharetra sollicitudin, justo.
+                            </p>
+                        </div>
+
+                        <div class="contenedorConfirmarEliminacionNotaRIS">
+                            
+                            <input type="button" class="btnEliminarNotaIniciarConfirmacionRIS " value="Eliminar" onclick="confirmarEliminacion(this);">
+
+                            <div class="contenedorBotonesConfirmarRIS ocultarContenedorNotasRIS">
+                                <div>
+                                    <p>
+                                        Eliminar?
+                                    </p>
+                                </div>
+                                <div>
+                                    <input type="button" class="botonConfirmarAccionRIS" value="No" onclick="cancelarEliminacion(this)">
+                                    <input type="button" class="botonConfirmarAccionRIS" value="Si" onclick="eliminarNota(1, this)">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+
+
+
+
+                    
+                <div class="contenedorPropiedadesNotasEditablesRIS">
+                    <form class="formularioNotasRIS">
+                        <div class="contenedorAgregarAnotacionFichaRIS">
+                            <textarea class="inputTextGenericoNotasFichasEnRIS" placeholder="Escribir nueva nota" id="textareaNotas">
+                            </textarea>
+                        </div>
+                        <div class="contenedorBotonesAgregarNuevaNotaRIS">
+                            <input type="button" class="botonGenericoAgregarNotaRIS" value="Limpiar" onclick="limpiarTextArea();">
+                            <input type="button" class="botonGenericoAgregarNotaRIS" value="Guardar" onclick="guardarNuevaNota();">
+                        </div>
+                    </form>
+                </div>
+
             <!-- Etiquetas de cierre para seccion de la solicitud -->
             </div>
         </div>
 
 
+        
 
 
 
@@ -148,7 +276,25 @@
 
 
 
+        <!-- Seccion de solicitud [Plantilla] -->
+        <div class="bloqueContenidoSectionFichaRIS">
+            <!-- Titulo de seccion -->
+            <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
+                <div class="separadorContenidoFichaTituloRIS">
+                    <p>Plantilla</p>
+                </div>
+                <span class="lineaVisionContenedorFichaTituloRIS"></span>
+            </div>
 
+            <!-- Contenedor expandible al dar click -->
+            <div class="contenedorExpandibleElementosFRIS">
+                
+                <p>
+                    Plantilla generica para crear nuevas secciones de la solicitud
+                </p>
+            <!-- Etiquetas de cierre para seccion de la solicitud -->
+            </div>
+        </div>
 
     <!-- Etiquetas de cierre para el contenido de la solicitud -->
     </div>
