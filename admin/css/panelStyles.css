@@ -1190,3 +1190,15 @@
     margin: 0;
     padding: 0;
 }
+
+.contenedorFechaNotaDinamicaRIS{
+    padding: 5px 15px 5px 0;
+}
+
+.contenedorFechaNotaDinamicaRIS p{
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,.3);
+    font-size: 14px;
+    font-weight: bold;
+}

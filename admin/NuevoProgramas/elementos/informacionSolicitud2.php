@@ -43,8 +43,8 @@
                         });
                     }
                     // actualizacion de documentos cada 3s (pausar el ciclo si se encuentra cerrada la pestaña)
-                //    tiempoReal();
-                 //   generarDocumentos();
+                   // tiempoReal();
+                  //  generarDocumentos();
 
                     var mostrarDocumentosAutomaticos = false;
                     function generarDocumentos(){
@@ -115,6 +115,23 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!-- Seccion de solicitud [Propiedades] -->
         <div class="bloqueContenidoSectionFichaRIS">
@@ -189,17 +206,30 @@
         </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
-
-
-
-
-
 
         <!-- Seccion de solicitud [Anotaciones] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
-            <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
+            <div class="contenidoFichaTituloContenedorRIS" id="seccionNotasDinamicas">
                 <div class="separadorContenidoFichaTituloRIS">
                     <p>Anotaciones</p>
                 </div>
@@ -207,55 +237,55 @@
             </div>
 
             <!-- Contenedor expandible al dar click -->
-            <div class="contenedorExpandibleElementosFRIS">
+            <div class="contenedorExpandibleElementosFRIS contenedorExpandibleElementosFRISNTV">
                 
-
-                <!-- contenedor de notas -->
-                <div class="contenedorNotasDinamicasGeneradasRIS">
-                    <!-- Nota -->
-                    <div class="fichaNotaDinamicaGeneradaRIS">
-                        <div class="contenedorNotaDinamicaTextoRIS">
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in purus vitae lectus tempus sagittis vel ac est. Integer eget ipsum lorem. Etiam ullamcorper mauris facilisis enim porta, ut maximus enim interdum. Curabitur pretium id elit sed maximus. Morbi rutrum, magna et venenatis bibendum, nisl nisl accumsan ligula, vel iaculis libero felis ac diam. Mauris interdum metus pretium, posuere est non, feugiat arcu. Donec rhoncus, nunc consequat pharetra sollicitudin, justo.
-                            </p>
-                        </div>
-
-                        <div class="contenedorConfirmarEliminacionNotaRIS">
-                            
-                            <input type="button" class="btnEliminarNotaIniciarConfirmacionRIS " value="Eliminar" onclick="confirmarEliminacion(this);">
-
-                            <div class="contenedorBotonesConfirmarRIS ocultarContenedorNotasRIS">
-                                <div>
-                                    <p>
-                                        Eliminar?
-                                    </p>
-                                </div>
-                                <div>
-                                    <input type="button" class="botonConfirmarAccionRIS" value="No" onclick="cancelarEliminacion(this)">
-                                    <input type="button" class="botonConfirmarAccionRIS" value="Si" onclick="eliminarNota(1, this)">
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    
+                <!-- Contenedor de notas -->
+                <div class="contenedorNotasDinamicasGeneradasRIS" id="contenedorNotasDinamicasGeneradasRIS">             
                 </div>
 
+                <!-- Obtener notas con AJAX -->
+                <?php
+                    $solicitudNota = strip_tags(htmlspecialchars($_GET['ids']));
+                ?>
+               
+                <script>
+                    // Obtener notas dinamicamente
+                    function actualizarDatos(){
+                        let idSolicitud = <?=$solicitudNota;?>;
+                        var link = 'NuevoProgramas/Externo/consultarNotas.php?idSolicitud=' + idSolicitud;
+                        var tabla = $.ajax({
+                            url: link,
+                            dataType: 'text'
+                        }).done(function(res){
+                                document.getElementById("contenedorNotasDinamicasGeneradasRIS").innerHTML = res;
+                        });
+                    }
 
+                    // Ocultar/Mostrar seccion y consultar datos
+                    function lanzarFuncionesNotas(){
+                        // Obtener datos
+                        actualizarDatos();
+                        // Expandir/Reducir
+                        expandirInformacionDeSolicitud(this);
+                        
+                    }
 
-
-                    
+                    // Asignar evento click a la seccion
+                    document.getElementById("seccionNotasDinamicas").addEventListener("click", lanzarFuncionesNotas);
+                </script>
+              
+                <!-- Crear nueva nota -->
                 <div class="contenedorPropiedadesNotasEditablesRIS">
-                    <form class="formularioNotasRIS">
+                    <form class="formularioNotasRIS" id="formularioEnviarNotaNueva">
                         <div class="contenedorAgregarAnotacionFichaRIS">
-                            <textarea class="inputTextGenericoNotasFichasEnRIS" placeholder="Escribir nueva nota" id="textareaNotas">
+                            <textarea class="inputTextGenericoNotasFichasEnRIS" name="textareaNotas" placeholder="Escribir nueva nota (15 a 500 caracteres)" id="textareaNotas">
                             </textarea>
+                           
+                            <input type="text" value="<?=$solicitudNota;?>" id="solicitudPropietarioId" hidden>
                         </div>
                         <div class="contenedorBotonesAgregarNuevaNotaRIS">
                             <input type="button" class="botonGenericoAgregarNotaRIS" value="Limpiar" onclick="limpiarTextArea();">
-                            <input type="button" class="botonGenericoAgregarNotaRIS" value="Guardar" onclick="guardarNuevaNota();">
+                            <input type="submit" class="botonGenericoAgregarNotaRIS" value="Guardar">
                         </div>
                     </form>
                 </div>
@@ -266,10 +296,6 @@
 
 
         
-
-
-
-
 
 
 

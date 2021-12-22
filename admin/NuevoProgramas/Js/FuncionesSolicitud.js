@@ -235,8 +235,17 @@ function cancelarEliminacion(boton){
 
 // enviar formulario para eliminar nota
 function eliminarNota(idNota, boton){
-    console.log("se eliminara la nota " + idNota + " y despues se actualizaran todas");
     cancelarEliminacion(boton);
+
+    var link = 'NuevoProgramas/Externo/eliminarNotas.php?idNota=' + idNota;
+    var tabla = $.ajax({
+        url: link,
+        dataType: 'text'
+    }).done(function(res){
+            // Obtener datos
+            actualizarDatos();
+    });
+
 }
 
 // Limpiar Nota
@@ -245,7 +254,35 @@ function limpiarTextArea(){
     textArea.value = "";
 }
 
-// subir nota a bdo
-function guardarNuevaNota(){
-    console.log("agregar nueva nota con ajax");
-}
+// Guardar nueva nota en servidor
+$(function(){
+    $("#formularioEnviarNotaNueva").on("submit", function(e){
+        e.preventDefault();
+        let campoTexto = document.getElementById("textareaNotas").value;
+        if(campoTexto != ""){
+            if(campoTexto.length >= 15 && campoTexto.length <= 500){
+
+                var nota = new FormData(document.getElementById("formularioEnviarNotaNueva"));
+                let idSolicitudPropietario = document.getElementById('solicitudPropietarioId').value;
+
+                let url = "NuevoProgramas/Externo/nuevaNota.php?idSolicitud=" + idSolicitudPropietario;
+            
+                $.ajax({
+                    url: url,
+                    type: "post",
+                    dataType: "html",
+                    data: nota,
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                }).done(function(res){
+                   // actualizar registros y limpiar campo input
+                    actualizarDatos();
+                    limpiarTextArea();
+                });
+            }
+        }
+    });
+});
+
+// Continuación
