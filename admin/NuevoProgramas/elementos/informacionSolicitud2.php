@@ -7,7 +7,6 @@
     </div>
     <!-- Contenido de la solicitud -->
     <div class="contenidoFichaSolicitudRIS">
-
         <!-- Seccion de solicitud [Propiedades] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
@@ -38,6 +37,7 @@
 
 
 
+
         <!-- Seccion de solicitud [Información] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
@@ -55,10 +55,6 @@
             <!-- Etiquetas de cierre para seccion de la solicitud -->
             </div>
         </div>
-
-
-
-
 
 
 
@@ -235,7 +231,6 @@
     <!-- Etiquetas de cierre para el contenido de la solicitud -->
     </div>
 </div>
-
 <!-- Ventana modal generica -->
 <div class="bannerVentanaModalGenericaRIS ocultarVentanaModalGenerica" id="bannerVentanaModalGenericaRIS">
     <span class="botonCerrarModalGenericaRIS" onclick="ocultarVentanaModal(this);">
@@ -246,6 +241,5 @@
         </p>
     </div>
 </div>
-
 <script src="NuevoProgramas/Js/FuncionesSolicitud.js">
 </script>
