@@ -151,7 +151,6 @@ function reducirInputFile(boton){
  $(function(){
     $("#formularioSubirArchivoFichaRIS2").on("submit", function(e){
         e.preventDefault();
-        var f = $(this);
         var formData = new FormData(document.getElementById("formularioSubirArchivoFichaRIS2"));
         let campoTitulo = document.getElementById("campoTituloSubirArchivoFichaRIS2").value,
             campoArchivo = document.getElementById("SubirArchivoClick").value;
@@ -210,6 +209,7 @@ function reducirInputFile(boton){
                     }else{
                         ventanaModalGenerica.firstChild.nextSibling.firstChild.innerHTML = res; 
                     }
+                    actualizarDocumentos();
             });
         }
     });

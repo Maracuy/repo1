@@ -5,7 +5,6 @@
             Solicitud Folio.&#32;&#35;<span>getID</span>
         </p>
     </div>
-
     <!-- Contenido de la solicitud -->
     <div class="contenidoFichaSolicitudRIS">
 
@@ -73,14 +72,14 @@
         <!-- Seccion de solicitud [Documentos] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
-           <div class="contenidoFichaTituloContenedorRIS claseEditableFormularioRIS" onclick="expandirInformacionDeSolicitud(this);generarDocumentos();">
+           <div class="contenidoFichaTituloContenedorRIS claseEditableFormularioRIS" onclick="expandirInformacionDeSolicitud(this);actualizarDocumentos();">
                 <div class="separadorContenidoFichaTituloRIS">
                     <p>Archivos</p>
                 </div>
                 <span class="lineaVisionContenedorFichaTituloRIS"></span>
             </div>
             <!-- Contenedor expandible al dar click -->
-            <div class="contenedorExpandibleElementosFRIS">
+            <div class="contenedorExpandibleElementosFRIS contenedorExpandibleElementosFRISNTV">
                 <!-- contenedor de las fichas -->
                 <div id="contenedorFichaDocumentosSg">
                 </div>
@@ -90,9 +89,10 @@
                     $idUsuario = strip_tags(htmlspecialchars($_GET['ids']));
                     ?>
 
-                    function tiempoReal(){
+                    function actualizarDocumentos(){
+                        let link = 'NuevoProgramas/Externo/consultarDocumentos.php?ids=' + <?=$idUsuario?>;
                         var tabla = $.ajax({
-                            url: 'NuevoProgramas/Externo/consultarDocumentos.php?ids=' + <?=$idUsuario?>,
+                            url: link,
                             dataType: 'text'
                         }).done(function(res){
                             let contenedor = document.getElementById("contenedorFichaDocumentosSg");
@@ -102,28 +102,6 @@
                                 contenedor.innerHTML = res;
                             }
                         });
-                    }
-
-                    // actualizacion de documentos cada 3s (pausar el ciclo si se encuentra cerrada la pestaña)
-                   // tiempoReal();
-                  //  generarDocumentos();
-
-                  /* REPARAR BUG [IMPORTANTE]
-
-                  La seccion deberi estar cerrada al cargar la pagina pero cuando se define como "cerrada" por defecto
-                  ya no actualizara automaticamente
-
-                  solucion: rehacer logica
-                  cambios necesarios: no actualizar cada determinado tiempo, recargar unicamente si se ha subido un nuevo archivo o la pagina/seccion ha sido abierta
-                  
-                  */
-
-                    var mostrarDocumentosAutomaticos = false;
-                    function generarDocumentos(){
-                        mostrarDocumentosAutomaticos ^= true;
-                        var llamadaABase = setInterval(function(){
-                            (mostrarDocumentosAutomaticos) ? clearInterval(llamadaABase) : tiempoReal();
-                        }, 3000); 
                     }
                 </script>
                 <!-- Contenedor de formulario para subir archivos -->
@@ -187,36 +165,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!-- Seccion de solicitud [Anotaciones] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
@@ -284,12 +232,6 @@
             <!-- Etiquetas de cierre para seccion de la solicitud -->
             </div>
         </div>
-
-
-        
-
-
-        
     <!-- Etiquetas de cierre para el contenido de la solicitud -->
     </div>
 </div>
