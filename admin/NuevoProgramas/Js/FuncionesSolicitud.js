@@ -285,4 +285,47 @@ $(function(){
     });
 });
 
+// Actualizar propiedades
+function actualizarPropiedades(){
+    const idSolicitud = document.getElementById("solicitudIdEstado").value;
+    var link = 'NuevoProgramas/Externo/consultarPropiedades.php?idSolicitud=' + idSolicitud;
+    var tabla = $.ajax({
+        url: link,
+        dataType: 'text'
+    }).done(function(res){
+            document.getElementById("contenedorPropiedadesActualizablesDocRIS").innerHTML = res;
+            document.getElementById("checkboxPropiedades1").style.visibility = "hidden";
+            document.getElementById("checkboxPropiedades2").style.visibility = "hidden";
+            document.getElementById("checkboxPropiedades3").style.visibility = "hidden";
+            document.getElementById("checkboxPropiedades4").style.visibility = "hidden";
+    });
+
+}
+
+// Ocultar/Mostrar seccion y consultar datos
+function lanzarFuncionesPropiedades(){
+    // Obtener datos
+    actualizarPropiedades();
+    // Expandir/Reducir
+    expandirInformacionDeSolicitud(this);
+}
+
+// Asignar evento click a la seccion PROPIEDADES
+document.getElementById("seccionPropiedadesDinamicas").addEventListener("click", lanzarFuncionesPropiedades);
+
+// Cambiar estado de input con un click
+function cambiarEstadoInput(botonCheck, estadoCheck){
+    const idSolicitud = document.getElementById("solicitudIdEstado").value;
+    estadoCheck = estadoCheck.checked;
+    estadoCheck = (estadoCheck) ? 1 : 0;
+
+    var link = 'NuevoProgramas/Externo/cambiarPropiedadesSolicitud.php?idSolicitud=' + idSolicitud + '&boton=' + botonCheck + '&estado=' + estadoCheck;
+    var tabla = $.ajax({
+        url: link,
+        dataType: 'text'
+    }).done(function(res){
+        actualizarPropiedades();
+    });
+}
+
 // Continuación

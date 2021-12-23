@@ -9,6 +9,67 @@
     <!-- Contenido de la solicitud -->
     <div class="contenidoFichaSolicitudRIS">
 
+        <!-- Seccion de solicitud [Propiedades] -->
+        <div class="bloqueContenidoSectionFichaRIS">
+            <!-- Titulo de seccion -->
+            <div class="contenidoFichaTituloContenedorRIS" id="seccionPropiedadesDinamicas">
+                <div class="separadorContenidoFichaTituloRIS">
+                    <p>Propiedades</p>
+                </div>
+                <span class="lineaVisionContenedorFichaTituloRIS"></span>
+            </div>
+            <!-- Contenedor expandible al dar click -->
+            <div class="contenedorExpandibleElementosFRIS contenedorExpandibleElementosFRISNTV">
+                <!-- Obtener notas con AJAX -->
+                <?php
+                    $solicitudIdEstado = strip_tags(htmlspecialchars($_GET['ids']));
+                ?>
+                <input type="text" id="solicitudIdEstado" value="<?=$solicitudIdEstado;?>" hidden>
+                <div class="contenedorFichasFlexGridRIS" id="contenedorPropiedadesActualizablesDocRIS">
+                </div>
+            <!-- Etiquetas de cierre para seccion de la solicitud -->
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Seccion de solicitud [Información] -->
+        <div class="bloqueContenidoSectionFichaRIS">
+            <!-- Titulo de seccion -->
+            <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
+                <div class="separadorContenidoFichaTituloRIS">
+                    <p>Información</p>
+                </div>
+                <span class="lineaVisionContenedorFichaTituloRIS"></span>
+            </div>
+            <!-- Contenedor expandible al dar click -->
+            <div class="contenedorExpandibleElementosFRIS">
+                <p>
+                    Información sobre la solicitud
+                </p>
+            <!-- Etiquetas de cierre para seccion de la solicitud -->
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Seccion de solicitud [Documentos] -->
         <div class="bloqueContenidoSectionFichaRIS">
             <!-- Titulo de seccion -->
@@ -42,9 +103,20 @@
                             }
                         });
                     }
+
                     // actualizacion de documentos cada 3s (pausar el ciclo si se encuentra cerrada la pestaña)
                    // tiempoReal();
                   //  generarDocumentos();
+
+                  /* REPARAR BUG [IMPORTANTE]
+
+                  La seccion deberi estar cerrada al cargar la pagina pero cuando se define como "cerrada" por defecto
+                  ya no actualizara automaticamente
+
+                  solucion: rehacer logica
+                  cambios necesarios: no actualizar cada determinado tiempo, recargar unicamente si se ha subido un nuevo archivo o la pagina/seccion ha sido abierta
+                  
+                  */
 
                     var mostrarDocumentosAutomaticos = false;
                     function generarDocumentos(){
@@ -133,77 +205,6 @@
 
 
 
-        <!-- Seccion de solicitud [Propiedades] -->
-        <div class="bloqueContenidoSectionFichaRIS">
-            <!-- Titulo de seccion -->
-            <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
-                <div class="separadorContenidoFichaTituloRIS">
-                    <p>Propiedades</p>
-                </div>
-                <span class="lineaVisionContenedorFichaTituloRIS"></span>
-            </div>
-            <!-- Contenedor expandible al dar click -->
-            <div class="contenedorExpandibleElementosFRIS">
-
-
-                
-                <div class="contenedorFichasFlexGridRIS">
-                    <div class="contenedorPanelPropiedadesDocumentoRIS">
-                        <div class="contenedorElementosFichasPropiedadesRIS">
-                            <div class="fichasElementosPropiedadesRIS">
-                                <p>
-                                    Titulo de propiedad 1
-                                </p>
-                            </div>
-                            <div class="fichasElementosPropiedadesRIS">
-                                <input type="checkbox" id="checkboxPropiedades1" class="inputCheckboxPropiedades" hidden>
-                                <label for="checkboxPropiedades1" class="switchCambiarEstadoPropiedadesRIS"></label>
-                            </div>
-                        </div>
-                        <div class="contenedorElementosFichasPropiedadesRIS">
-                            <div class="fichasElementosPropiedadesRIS">
-                                <p>
-                                    Titulo de propiedad 2
-                                </p>
-                            </div>
-                            <div class="fichasElementosPropiedadesRIS">
-                                <input type="checkbox" id="checkboxPropiedades2" class="inputCheckboxPropiedades" hidden>
-                                <label for="checkboxPropiedades2" class="switchCambiarEstadoPropiedadesRIS"></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contenedorPanelPropiedadesDocumentoRIS">
-                        <div class="contenedorElementosFichasPropiedadesRIS">
-                            <div class="fichasElementosPropiedadesRIS">
-                                <p>
-                                    Titulo de propiedad 3
-                                </p>
-                            </div>
-                            <div class="fichasElementosPropiedadesRIS">
-                                <input type="checkbox" id="checkboxPropiedades3" class="inputCheckboxPropiedades" hidden>
-                                <label for="checkboxPropiedades3" class="switchCambiarEstadoPropiedadesRIS"></label>
-                            </div>
-                        </div>
-                        <div class="contenedorElementosFichasPropiedadesRIS">
-                            <div class="fichasElementosPropiedadesRIS">
-                                <p>
-                                    Titulo de propiedad 4
-                                </p>
-                            </div>
-                            <div class="fichasElementosPropiedadesRIS">
-                                <input type="checkbox" id="checkboxPropiedades4" class="inputCheckboxPropiedades" hidden>
-                                <label for="checkboxPropiedades4" class="switchCambiarEstadoPropiedadesRIS"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            <!-- Etiquetas de cierre para seccion de la solicitud -->
-            </div>
-        </div>
 
 
 
@@ -215,16 +216,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-        
 
         <!-- Seccion de solicitud [Anotaciones] -->
         <div class="bloqueContenidoSectionFichaRIS">
@@ -298,30 +289,7 @@
         
 
 
-
-
-
-
-        <!-- Seccion de solicitud [Plantilla] -->
-        <div class="bloqueContenidoSectionFichaRIS">
-            <!-- Titulo de seccion -->
-            <div class="contenidoFichaTituloContenedorRIS" onclick="expandirInformacionDeSolicitud(this);">
-                <div class="separadorContenidoFichaTituloRIS">
-                    <p>Plantilla</p>
-                </div>
-                <span class="lineaVisionContenedorFichaTituloRIS"></span>
-            </div>
-
-            <!-- Contenedor expandible al dar click -->
-            <div class="contenedorExpandibleElementosFRIS">
-                
-                <p>
-                    Plantilla generica para crear nuevas secciones de la solicitud
-                </p>
-            <!-- Etiquetas de cierre para seccion de la solicitud -->
-            </div>
-        </div>
-
+        
     <!-- Etiquetas de cierre para el contenido de la solicitud -->
     </div>
 </div>
