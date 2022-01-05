@@ -13,6 +13,7 @@
     --ColorNegroDos: #090909;
     --ColorNegroTres: #0f0f0f;
     --ColorRojoUno: #d43636;
+    --ColorNaranjaUno: #E36C29;
     --ColorAmarilloUno: #f5e963;
     --ColorVerdeUno: #43ab59;
     --ColorAzulUno: #3585e0;
@@ -34,6 +35,7 @@
     --ColorNegroDos: #090909;
     --ColorNegroTres: #0f0f0f;
     --ColorRojoUno: #d43636;
+    --ColorNaranjaUno: #E36C29;
     --ColorAmarilloUno: #f5e963;
     --ColorVerdeUno: #43ab59;
     --ColorAzulUno: #3585e0;
@@ -1181,6 +1183,30 @@ body{
     margin: 0;
     padding: 0;
     color: var(--ColorGrisSuaveDos);
-
     font-size: 14px;
+}
+
+/* Estilos informacion de la solicitud */
+
+.itemTablaEstadoGeneralRIS{
+    font-weight: bold;
+    color: var(--ColorGrisSuaveDos);
+    text-transform: uppercase;
+    margin-left: 1px;
+}
+
+.itemTablaEstadoGeneralRISNuevo{
+    color: var(--ColorVerdeUno);
+}
+
+.itemTablaEstadoGeneralRISPendiente{
+    color: var(--ColorNaranjaUno);
+}
+
+.itemTablaEstadoGeneralRISUrgente{
+    color: var(--ColorRojoUno);
+}
+
+.itemTablaEstadoGeneralRISVulnerable{
+    color: var(--ColorAzulUno);
 }

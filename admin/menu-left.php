@@ -9,9 +9,22 @@
             <a href="../admin/reportes.php" class="d-block text-light p-3"> <i class="fas fa-align-justify mr-2"></i> Reporte </a>
         <?php endif?>
 
+        <!-- Fin programas -->
+        <!-- Reconstriur esta parte con secciones (programas, monitor general, mi monitor, registrar ciudadano)-->
+
         <?php if($_SESSION['user']['nivel'] < 8 ): // Solo los trabajadores pueden ver esto?> 
-            <a href="../admin/inicioProgramas.php?tc=6" class="d-block text-light p-3"> <i class="fas fa-align-justify mr-2"></i> Programas </a>
+            <a class="d-block text-light p-3"><i class="fas fa-align-justify mr-2"></i>Programas</a>
         <?php endif?>
+
+        <?php if($_SESSION['user']['nivel'] != 4 && $_SESSION['user']['nivel'] < 6): // Solo los ENCARGADOS para arriba pueden ver esto?> 
+            <a href="../admin/inicioProgramas.php?tc=6" class="d-block text-light p-3 ml-3"><i class="fas fa-tachometer-alt mr-2 ml-2"></i>Monitor general</a>
+        <?php endif?>
+
+        <?php if($_SESSION['user']['nivel'] < 8 ): // Solo los trabajadores pueden ver esto?> 
+            <a href="../admin/solicitarPrograma.php" class="d-block text-light p-3 ml-3"><i class="fas fa-tachometer-alt mr-2 ml-2"></i>Solicitar</a>
+        <?php endif?>
+
+        <!-- Fin programas -->
 
         <?php if($_SESSION['user']['nivel'] < 4 ): // Solo los ENCARGADOS para arriba pueden ver esto?> 
             <a href="../admin/elecciones.php" class="d-block text-light p-3"> <i class="fas fa-vote-yea mr-2"></i> Electoral </a>

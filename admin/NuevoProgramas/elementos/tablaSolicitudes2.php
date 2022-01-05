@@ -183,12 +183,18 @@ try{
                     <?=$registro["ID_SOLICITUD"]?>
                 </div>
                 <div class="ItemFilaC">
-
-                    <!-- MODIFICAR FUNCIONES DE LOS ICONOS [SE REPRESENTAN EN TEXTO PLANO POR AHORA] -->
-                    <!-- MODIFICAR FUNCIONES DE LOS ICONOS [SE REPRESENTAN EN TEXTO PLANO POR AHORA] -->
-                    <!-- MODIFICAR FUNCIONES DE LOS ICONOS [SE REPRESENTAN EN TEXTO PLANO POR AHORA] -->
-
-                    <?=$registro["ID"]?>
+                    <span class="itemTablaEstadoGeneralRIS <?php if($registro["NUEVO"]){echo "itemTablaEstadoGeneralRISNuevo";}?>">
+                        n
+                    </span>
+                    <span class="itemTablaEstadoGeneralRIS <?php if($registro["PENDIENTE"]){echo "itemTablaEstadoGeneralRISPendiente";}?>">
+                        p
+                    </span>
+                    <span class="itemTablaEstadoGeneralRIS <?php if($registro["URGENTE"]){echo "itemTablaEstadoGeneralRISUrgente";}?>">
+                        u
+                    </span>
+                    <span class="itemTablaEstadoGeneralRIS <?php if($registro["VULNERABLE"]){echo "itemTablaEstadoGeneralRISVulnerable";}?>">
+                        v
+                    </span>
                 </div>
                 <div class="ItemFilaC">
                     <?=$registro["NOMBRE_BENEFICIARIO"]?>&#32; &#40;<?=$registro["CURP_BENEFICIARIO"]?>&#41;

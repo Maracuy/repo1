@@ -49,9 +49,24 @@
             </div>
             <!-- Contenedor expandible al dar click -->
             <div class="contenedorExpandibleElementosFRIS">
-                <p>
-                    Información sobre la solicitud
-                </p>
+                
+
+
+
+                <div class="sinClase">
+
+                <h1>Información de la solicitud aqui</h1>
+
+                </div>
+
+
+
+
+
+
+
+
+
             <!-- Etiquetas de cierre para seccion de la solicitud -->
             </div>
         </div>
