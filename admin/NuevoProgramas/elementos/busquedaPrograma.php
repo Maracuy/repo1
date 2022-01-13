@@ -1,5 +1,106 @@
-<?php
+<div class="contenedorCuadroBusquedaNP">
+    
+    <div class="contenedorTituloBusquedaNP">
+        <p>
+            Localizar programa
+        </p>
+    </div>
 
-echo "<center><h3>formulario con localizador de programa segun su id o su nombre, al encontrar una referencia se debe crear una fila con sus caracteristicas y al dar click, seleccionar</h3></center>";
+    <div class="contenedorElementosCuadroBusquedaNP">
 
-?>
+        <div class="contenedorBuscadorCuadroBusquedaNP">
+            <input type="text" class="inputBuscarElementoNP" id="inputBuscarElementoNP" value="" autocomplete="off">
+            <label for="" class="labelBuscarElementoNP" id="labelBuscarElementoNP">
+                Buscar programa
+            </label>
+        </div>
+        
+        <!-- Contenedor que alamcenara los resultados dinamicos -->
+        <div class="contenedorResultadosCuadoBusquedaNP">
+
+
+
+
+
+
+            <!-- Ficha dinamica -->
+            <div class="contenedorGeneralResultadoNP contenedorGeneralResultadoActivoNP">
+
+                <div class="contenedorFichaGeneralResultadoNP">
+                    <div class="contenedorElementosFichaResultadosNP">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="imagenProgramaFichaGenerealResultadoNP">
+                    </div>
+                    <div class="contenedorElementosFichaResultadosNP">
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p><span>Programa: </span>
+                                Pensión para el bienestar de las personas adultas mayores
+                            </p> 
+                        </div>
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p>
+                                Dirección de desarrollo social
+                            </p>
+                        </div>
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p>
+                                Subdireccion de vinculación institucional
+                            </p>
+                        </div>
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p>
+                                Departamento de programas federales
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="contenedorGeneralResultadoNP">
+
+                <div class="contenedorFichaGeneralResultadoNP">
+                    <div class="contenedorElementosFichaResultadosNP">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaq68iCodsj-2dY9eEA-SiWBV6W6cDH2WrHKgGyQG145m991AmaiZ9_Lu_yxGdtXGqmzQ&usqp=CAU" class="imagenProgramaFichaGenerealResultadoNP">
+                    </div>
+                    <div class="contenedorElementosFichaResultadosNP">
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p><span>Programa: </span>
+                                Pensión para el bienestar de las personas adultas mayores
+                            </p> 
+                        </div>
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p>
+                                Dirección de desarrollo social
+                            </p>
+                        </div>
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p>
+                                Subdireccion de vinculación institucional
+                            </p>
+                        </div>
+                        <div class="contenedorFilasFichaResultadosNP">
+                            <p>
+                                Departamento de programas federales
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<script src="NuevoProgramas/Js/FuncionesBuscar.js">
+</script>
