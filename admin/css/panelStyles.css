@@ -1259,12 +1259,13 @@ body{
 }
 
 /* Normal */
-.contenedorGeneralResultadoNP:hover{
+.contenedorGeneralResultadoNP:not(.contenedorGeneralResultadoVacioNP):hover{
     border: 2px solid var(--ColorVerdeUno);
 }
 
+
 /* Seleccionado */
-.contenedorGeneralResultadoActivoNP, .contenedorGeneralResultadoActivoNP:hover{
+.contenedorGeneralResultadoActivoNP:not(.contenedorGeneralResultadoVacioNP):hover, .contenedorGeneralResultadoActivoNP:not(.contenedorGeneralResultadoVacioNP){
     border: 2px solid var(--ColorAzulUno);
 }
 
@@ -1372,3 +1373,19 @@ body{
 .contenedorFilasFichaResultadosNP:last-child{
     margin: 0;
 }
+
+.resultadoVacioContenedorGNP{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 8px;
+}
+
+.resultadoVacioContenedorGNP p{
+    padding: 0;
+    margin: 0;
+    color: var(--ColorGrisDos);
+}
+

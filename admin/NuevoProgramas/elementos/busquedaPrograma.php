@@ -16,7 +16,7 @@
         </div>
         
         <!-- Contenedor que alamcenara los resultados dinamicos -->
-        <div class="contenedorResultadosCuadoBusquedaNP">
+        <div class="contenedorResultadosCuadoBusquedaNP" id="contenedorResultadosDelegacionNP">
 
 
 
@@ -24,8 +24,7 @@
 
 
             <!-- Ficha dinamica -->
-            <div class="contenedorGeneralResultadoNP contenedorGeneralResultadoActivoNP">
-
+            <div class="contenedorGeneralResultadoNP contenedorGeneralResultadoActivoNP" data-idprograma="1234">
                 <div class="contenedorFichaGeneralResultadoNP">
                     <div class="contenedorElementosFichaResultadosNP">
                         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="imagenProgramaFichaGenerealResultadoNP">
@@ -53,11 +52,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <div class="contenedorGeneralResultadoNP">
-
+            <div class="contenedorGeneralResultadoNP" data-idprograma="5678">
                 <div class="contenedorFichaGeneralResultadoNP">
                     <div class="contenedorElementosFichaResultadosNP">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaq68iCodsj-2dY9eEA-SiWBV6W6cDH2WrHKgGyQG145m991AmaiZ9_Lu_yxGdtXGqmzQ&usqp=CAU" class="imagenProgramaFichaGenerealResultadoNP">
@@ -85,7 +82,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- Ficha para rusultados no encontrados -->
+            <div class="contenedorGeneralResultadoNP contenedorGeneralResultadoVacioNP">
+                <div class="resultadoVacioContenedorGNP">
+                    <p>
+                        Sin resultados
+                    </p>
+                </div>
             </div>
 
 
@@ -95,6 +100,8 @@
 
 
         </div>
+
+        <input type="text" id="inputContenedorSeleccionRealizada">
     </div>
 
 
