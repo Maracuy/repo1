@@ -24,7 +24,7 @@
 
 
             <!-- Ficha dinamica -->
-            <div class="contenedorGeneralResultadoNP contenedorGeneralResultadoActivoNP" data-idprograma="1234">
+            <div class="contenedorGeneralResultadoNP" data-idprograma="1234">
                 <div class="contenedorFichaGeneralResultadoNP">
                     <div class="contenedorElementosFichaResultadosNP">
                         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="imagenProgramaFichaGenerealResultadoNP">
@@ -84,7 +84,7 @@
                 </div>
             </div>
 
-            <!-- Ficha para rusultados no encontrados -->
+            <!-- Ficha para resultados no encontrados -->
             <div class="contenedorGeneralResultadoNP contenedorGeneralResultadoVacioNP">
                 <div class="resultadoVacioContenedorGNP">
                     <p>
@@ -101,7 +101,7 @@
 
         </div>
 
-        <input type="text" id="inputContenedorSeleccionRealizada">
+        <input type="text" id="inputContenedorSeleccionRealizada" value="">
     </div>
 
 

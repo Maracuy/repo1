@@ -1359,6 +1359,7 @@ body{
     font-size: 15px;
     color: var(--ColorGrisDos);
     text-align: left;
+    
 }
 
 .contenedorFilasFichaResultadosNP span{
@@ -1368,6 +1369,10 @@ body{
 .contenedorFilasFichaResultadosNP{
     width: 100%;
     margin-bottom: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 .contenedorFilasFichaResultadosNP:last-child{
@@ -1381,6 +1386,10 @@ body{
     align-items: center;
     justify-content: center;
     padding: 10px 8px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 .resultadoVacioContenedorGNP p{
@@ -1388,4 +1397,3 @@ body{
     margin: 0;
     color: var(--ColorGrisDos);
 }
-
