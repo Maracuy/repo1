@@ -10,6 +10,7 @@ cuadroBusquedaGeneral.addEventListener("keyup", (elemento)=>{
     if(valores.includes(tecla)){
         limpiarSeleccion();
     }
+    activarBusquedaDatos();
 });
 
 // Cambiar posicion del titulo "Buscar" en el input segun contenga informacion o no
@@ -83,3 +84,28 @@ function limpiarSeleccion(){
 }
 
 // Continuación
+$(buscar_datos());
+
+function buscar_datos(consulta){
+    $.ajax({
+        url: 'NuevoProgramas/Externo/buscarProgramas.php',
+        type: 'POST',
+        dataType: 'html',
+        data: {consulta: consulta}
+    }).done(function(respuesta){
+        let contenedorResultado = document.getElementById("contenedorResultadosDelegacionNP");
+        contenedorResultado.innerHTML = respuesta;
+    }).fail(function(){
+        console.log("error ejecutando");
+    });
+}
+
+function activarBusquedaDatos(){
+    let input = document.getElementById('inputBuscarElementoNP');
+    var valor = input.value;
+    if(valor != ""){
+        buscar_datos(valor);
+    }else{
+        buscar_datos();
+    }
+}
