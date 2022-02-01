@@ -1351,6 +1351,7 @@ body{
     height: 100px;
     border-radius: 50%;
     border: 2px solid var(--ColorGrisSuaveDos);
+    object-fit: cover;
 }
 
 .contenedorFilasFichaResultadosNP p, .contenedorFilasFichaResultadosNP span{
@@ -1396,4 +1397,117 @@ body{
     padding: 0;
     margin: 0;
     color: var(--ColorGrisDos);
+}
+
+/* cuadro de busqueda a ciudadano */
+.contenedorLocalizarCiudadanoNP{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  /*  background: orange;*/
+}
+
+.contenedorInputCuadroBusquedaCURPNP{
+    width: 90%;
+    height: 50px;
+   /* background: aqua;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputCuadroBusquedaCURPNP{
+    width: 100%;
+    height: 100%;
+    min-width: 350px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--ColorGrisSuaveDos);
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 45;
+    background: transparent;
+    color: var(--ColorGrisCinco);
+}
+
+.LabelCuadroBusquedaCURPNP{
+    padding: 2px 5px;
+    position: absolute;
+    font-size: 18px;
+    text-transform: uppercase;
+    z-index: 25;
+    transition: all .07s linear;
+    color: var(--ColorGrisSuaveDos);
+    display: inline;
+    white-space: nowrap;
+}
+
+.LabelCuadroBusquedaActivoCURPNP{
+    color: var(--ColorGrisDos);
+    font-size: 16px;
+    transform: translateY(-40px);
+}
+
+.contenedorBusquedaRespuestaCURPNP{
+    width: 100%;
+  /*  background: #3585e0;*/
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.botonBusquedaValidarCURPNP{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding: 6px 20px;
+    border-radius: 4px;
+    background: var(--ColorAzulUno);
+    color: var(--ColorBlancoDos);
+    border: none;
+    outline: none;
+}
+
+.bannerRespuestaValidacionCURPNP{
+    width: 90%;
+    min-width: 350px;
+    background: var(--ColorRojoUno);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    color: var(--ColorBlancoDos);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.bannerRespuestaValidacionCURPNP p{
+    margin: 0;
+    padding: 0;
+}
+
+.bannerRespuestaValidacionCURPEXITONP{
+    background: var(--ColorVerdeUno);
+}
+
+.bannerRespuestaValidacionCURPOCULTONP{
+    display: none;
+}
+
+#botonBannerRespuestaValidacionCURPNP{
+    background: var(--ColorVerdeUno);
 }

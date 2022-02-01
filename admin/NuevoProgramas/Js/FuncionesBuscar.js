@@ -83,7 +83,6 @@ function limpiarSeleccion(){
     }    
 }
 
-// Continuación
 $(buscar_datos());
 
 function buscar_datos(consulta){
@@ -93,7 +92,7 @@ function buscar_datos(consulta){
         dataType: 'html',
         data: {consulta: consulta}
     }).done(function(respuesta){
-        let contenedorResultado = document.getElementById("contenedorResultadosDelegacionNP");
+       let contenedorResultado = document.getElementById("contenedorResultadosDelegacionNP");
         contenedorResultado.innerHTML = respuesta;
     }).fail(function(){
         console.log("error ejecutando");
@@ -108,4 +107,87 @@ function activarBusquedaDatos(){
     }else{
         buscar_datos();
     }
+}
+
+// Titulo CURP
+const inputBusquedaCURP = document.getElementById("inputCuadroBusquedaCURPNP");
+inputBusquedaCURP.addEventListener("focus", alternarEtiqueta, true);
+inputBusquedaCURP.addEventListener("blur", alternarEtiqueta, true);
+inputBusquedaCURP.addEventListener("keyup", function(){
+    let bannerMensaje = document.getElementById("bannerRespuestaValidacionCURPNP");
+    let textoMensaje = document.getElementById("textoBannerRespuestaValidacionCURPNP");
+    textoMensaje.innerHTML = "";
+    bannerMensaje.classList.add("bannerRespuestaValidacionCURPOCULTONP");
+    let campoCURPValidada = document.getElementById("inputContenedorCURPIngresada");
+    campoCURPValidada.value = "";
+});
+
+function alternarEtiqueta(){
+    let busquedaCURP = document.getElementById("inputCuadroBusquedaCURPNP").value;
+    const labelBusquedaCURP = document.getElementById("LabelCuadroBusquedaCURPNP");
+
+    if(busquedaCURP === ""){
+        labelBusquedaCURP.classList.toggle('LabelCuadroBusquedaActivoCURPNP');
+    }
+}
+
+// AAAA000000AAAAAA00
+const botonValidarCURP = document.getElementById("botonBusquedaValidarCURPNP");
+
+botonValidarCURP.addEventListener('click', function(){
+    let contenedorInformacionCURP = document.getElementById("inputCuadroBusquedaCURPNP").value;
+    console.log("valor a analizar: " + contenedorInformacionCURP);
+    const expresion = "^([a-zA-Z]{4})+([0-9]{6})+([a-zA-Z]{6})+([0-9a-zA-Z]{2}|[a-zA-Z]{2}|[0-9]{2})+$";
+    let errores = 0;
+
+    if(contenedorInformacionCURP.length != 18){errores++;}
+    if(!contenedorInformacionCURP.match(expresion)){errores++;}
+
+    let bannerMensaje = document.getElementById("bannerRespuestaValidacionCURPNP");
+    let textoMensaje = document.getElementById("textoBannerRespuestaValidacionCURPNP");
+    let botonMensaje = document.getElementById("botonBannerRespuestaValidacionCURPNP");
+
+    if(errores != 0){
+        textoMensaje.innerHTML = "Curp inválida";
+        bannerMensaje.classList.remove("bannerRespuestaValidacionCURPEXITONP");
+        bannerMensaje.classList.remove("bannerRespuestaValidacionCURPOCULTONP");
+        botonMensaje.classList.add("bannerRespuestaValidacionCURPOCULTONP");
+    }else{
+
+
+        comprobarCURP();
+    }
+
+
+});
+
+function comprobarCURP(){
+
+    const contenidoInputCURP = document.getElementById("inputCuadroBusquedaCURPNP").value;
+
+    let bannerMensaje = document.getElementById("bannerRespuestaValidacionCURPNP");
+    let textoMensaje = document.getElementById("textoBannerRespuestaValidacionCURPNP");
+    let botonMensaje = document.getElementById("botonBannerRespuestaValidacionCURPNP");
+
+    var link = 'NuevoProgramas/Externo/verificarCurp.php?valorCurp=' + contenidoInputCURP;
+    $.ajax({
+        url: link,
+        dataType: 'text'
+    }).done(function(res){
+        if(res != ""){
+            console.log("el resultado es: " + res);
+            let campoCURPValidada = document.getElementById("inputContenedorCURPIngresada");
+            campoCURPValidada.value = res;
+            textoMensaje.innerHTML = "Validación correcta";
+            bannerMensaje.classList.add("bannerRespuestaValidacionCURPEXITONP");
+            bannerMensaje.classList.remove("bannerRespuestaValidacionCURPOCULTONP");
+            botonMensaje.classList.add("bannerRespuestaValidacionCURPOCULTONP");
+        }else{
+            let curpConsultada = document.getElementById("inputCuadroBusquedaCURPNP").value;
+            textoMensaje.innerHTML = "La CURP ("+curpConsultada+") no corresponde a ningún ciudadano registrado. Sí desea registrar uno nuevo, pulse el siguiente botón";
+            bannerMensaje.classList.remove("bannerRespuestaValidacionCURPEXITONP");
+            bannerMensaje.classList.remove("bannerRespuestaValidacionCURPOCULTONP");
+            botonMensaje.classList.remove("bannerRespuestaValidacionCURPOCULTONP");
+        }
+    });
 }
